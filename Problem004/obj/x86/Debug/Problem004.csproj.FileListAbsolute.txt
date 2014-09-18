@@ -1,0 +1,7 @@
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\bin\Debug\Problem004.exe
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\bin\Debug\Problem004.pdb
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\bin\Debug\Kang.Algorithm.BaseLib.dll
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\bin\Debug\Kang.Algorithm.BaseLib.pdb
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\obj\x86\Debug\Problem004.csprojResolveAssemblyReference.cache
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\obj\x86\Debug\Problem004.exe
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem004\obj\x86\Debug\Problem004.pdb

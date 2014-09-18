@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Kang.Algorithm.BaseLib
 {
+    /// <summary>
+    /// 检查一个数字是否是由给定的数求和得出
+    /// </summary>
     public class MultiplesChecker
     {
         private MultiplesChecker() { }
