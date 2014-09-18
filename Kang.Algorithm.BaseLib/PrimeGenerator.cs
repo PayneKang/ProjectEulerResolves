@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+
+namespace Kang.Algorithm.BaseLib
+{
+    public class PrimeGenerator
+    {
+        private static int[] primes;
+        static PrimeGenerator()
+        {
+            string primeStr = FileReader.ReadFile("Primes.txt");
+            string[] primeArray = primeStr.Split(',');
+            primes = new int[primeArray.Length];
+            for (int i = 0; i < primes.Length; i++)
+            {
+                primes[i] = int.Parse(primeArray[i]);
+            }
+        }
+        public bool CheckPrime(int number)
+        {
+            if (number <= 1000000)
+                return FoundInPrimes(number);
+            return CheckPrimeOver1000000(number);
+        }
+        private bool FoundInPrimes(int number){
+            return primes.Contains(number);
+        }
+        private bool CheckPrimeOver1000000(int number)
+        {
+            int sqrt = (int)Math.Sqrt(number);
+            sqrt ++;
+            for (int i = 3; i <= sqrt; i ++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+            return true;
+        }
+    }
+}
