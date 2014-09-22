@@ -3,3 +3,4 @@ E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Kang.Algorithm.BaseLib\bin\De
 E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Kang.Algorithm.BaseLib\obj\Debug\Kang.Algorithm.BaseLib.dll
 E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Kang.Algorithm.BaseLib\obj\Debug\Kang.Algorithm.BaseLib.pdb
 E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Kang.Algorithm.BaseLib\bin\Debug\Primes.txt
+E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Kang.Algorithm.BaseLib\obj\Debug\Kang.Algorithm.BaseLib.csprojResolveAssemblyReference.cache
