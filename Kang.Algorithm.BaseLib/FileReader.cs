@@ -12,6 +12,10 @@ namespace Kang.Algorithm.BaseLib
         private const int BUFFER_SIZE = 1024;
         public static string ReadFile(string filePath)
         {
+            return ReadFile(filePath,System.Text.Encoding.UTF8);
+        }
+        public static string ReadFile(string filePath,System.Text.Encoding encoding)
+        {
             using (FileStream fs = System.IO.File.Open(filePath, FileMode.Open))
             {
                 StringBuilder sb = new StringBuilder();
@@ -20,7 +24,7 @@ namespace Kang.Algorithm.BaseLib
                 do
                 {
                     readCount = fs.Read(buffer, 0, BUFFER_SIZE);
-                    sb.Append(System.Text.Encoding.UTF8.GetString(buffer, 0, readCount));
+                    sb.Append(encoding.GetString(buffer, 0, readCount));
                 } while (readCount > 0);
                 fs.Close();
                 return sb.ToString();
