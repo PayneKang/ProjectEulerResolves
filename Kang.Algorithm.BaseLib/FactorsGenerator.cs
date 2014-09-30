@@ -12,6 +12,54 @@ namespace Kang.Algorithm.BaseLib
     /// </summary>
     public class FactorsGenerator
     {
+        private Dictionary<long, List<long>> dicDistinctFacotors;
+        public FactorsGenerator()
+        {
+            this.dicDistinctFacotors = new Dictionary<long, List<long>>();
+        }
+        public List<long> GeneratorDistinctDivisor(long number)
+        {
+            List<long> result = new List<long>();
+            double sqrt = Math.Sqrt(number);
+            long lsqrt = 0;
+            bool sp = false;
+            lsqrt = (long)sqrt;
+            if (sqrt - (long)sqrt == 0){
+                sp = true;
+            }
+            for (long i = lsqrt; i > 0; i--)
+            {
+                if (number % i == 0)
+                {
+                    result.Add(i);
+                    if(!sp)
+                        result.Add(number/i);
+                }
+            }
+            return result;
+        }
+        public int GeneratorDistinctDivisorCount(long number)
+        {
+            int result = 0;
+            double sqrt = Math.Sqrt(number);
+            long lsqrt = 0;
+            bool sp = false;
+            lsqrt = (long)sqrt;
+            if (sqrt - (long)sqrt == 0)
+            {
+                sp = true;
+            }
+            for (long i = lsqrt; i > 0; i--)
+            {
+                if (number % i == 0)
+                {
+                    result++;
+                    if (!sp)
+                        result++;
+                }
+            }
+            return result;
+        }
         public List<long> GeneratorDistinctFactors(long number)
         {
             long tempNumber = number;
