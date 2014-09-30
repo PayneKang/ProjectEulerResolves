@@ -2,18 +2,20 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00D99943-038E-4583-AD9E-760936006716}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3F99999B-5AE0-42AE-9F95-74F18CC3AD83}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kang.Algorithm.BaseLib</RootNamespace>
-    <AssemblyName>Kang.Algorithm.BaseLib</AssemblyName>
+    <RootNamespace>Problem014</RootNamespace>
+    <AssemblyName>Problem014</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,23 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdjancentBuilder.cs" />
-    <Compile Include="CollatzSequenceProvider.cs" />
-    <Compile Include="FactorsGenerator.cs" />
-    <Compile Include="FibonacciGenerator.cs" />
-    <Compile Include="FileReader.cs" />
-    <Compile Include="Models\LargeNumberModel.cs" />
-    <Compile Include="MultiplesChecker.cs" />
-    <Compile Include="NumberUtils.cs" />
-    <Compile Include="PalindromicChecker.cs" />
-    <Compile Include="PrimeGenerator.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TriangleNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Primes.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\Kang.Algorithm.BaseLib\Kang.Algorithm.BaseLib.csproj">
+      <Project>{00D99943-038E-4583-AD9E-760936006716}</Project>
+      <Name>Kang.Algorithm.BaseLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
