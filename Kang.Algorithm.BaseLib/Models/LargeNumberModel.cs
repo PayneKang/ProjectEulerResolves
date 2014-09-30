@@ -31,6 +31,24 @@ namespace Kang.Algorithm.BaseLib.Models
             }
             return sb.ToString();
         }
+        public static LargeNumberModel operator *(LargeNumberModel left, int right)
+        {
+            List<int> result = new List<int>();
+            int highdigit = 0;
+            for (int i = left.NumberLength - 1 ; i >= 0; i--)
+            {
+                int digit = left.Digits[i] * right + highdigit;
+                result.Add(digit % 10);
+                highdigit = digit / 10;
+            }
+            if (highdigit > 0)
+                result.Add(highdigit);
+            LargeNumberModel resultNum = new LargeNumberModel();
+            result.Reverse();
+            resultNum.Digits = result.ToArray();
+            return resultNum;
+            
+        }
         public static LargeNumberModel operator +(LargeNumberModel left, LargeNumberModel right)
         {
             LargeNumberModel bigger = left.NumberLength >= right.NumberLength ? left : right;
