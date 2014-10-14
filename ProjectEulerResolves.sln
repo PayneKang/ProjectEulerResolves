@@ -42,6 +42,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem014", "Problem014\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem016", "Problem016\Problem016.csproj", "{B64E7123-6062-423E-83B4-B4DBCAE33234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem015", "Problem015\Problem015.csproj", "{97F8BB1D-CA55-4A4D-9601-4917FB657212}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem017", "Problem017\Problem017.csproj", "{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ProjectEulerResolves.vsmdi
@@ -215,6 +219,26 @@ Global
 		{B64E7123-6062-423E-83B4-B4DBCAE33234}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B64E7123-6062-423E-83B4-B4DBCAE33234}.Release|x86.ActiveCfg = Release|x86
 		{B64E7123-6062-423E-83B4-B4DBCAE33234}.Release|x86.Build.0 = Release|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Debug|x86.ActiveCfg = Debug|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Debug|x86.Build.0 = Debug|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Release|Any CPU.ActiveCfg = Release|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Release|Mixed Platforms.Build.0 = Release|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Release|x86.ActiveCfg = Release|x86
+		{97F8BB1D-CA55-4A4D-9601-4917FB657212}.Release|x86.Build.0 = Release|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Debug|x86.ActiveCfg = Debug|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Debug|x86.Build.0 = Debug|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Release|Any CPU.ActiveCfg = Release|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Release|x86.ActiveCfg = Release|x86
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,5 +259,6 @@ Global
 		{62E246FB-8FC9-4F9B-9C78-5B1EC48CBAC5} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 		{3F99999B-5AE0-42AE-9F95-74F18CC3AD83} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 		{B64E7123-6062-423E-83B4-B4DBCAE33234} = {0D427149-166D-4DA2-8200-AC90D09861F6}
+		{F6D57B0A-CEFF-4B64-9A3F-EAA1917BEB16} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 	EndGlobalSection
 EndGlobal
