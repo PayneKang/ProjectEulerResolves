@@ -41,8 +41,15 @@ namespace Kang.Algorithm.BaseLib.Models
                 result.Add(digit % 10);
                 highdigit = digit / 10;
             }
+            while (highdigit > 10)
+            {
+                result.Add(highdigit % 10);
+                highdigit = (highdigit / 10);
+            }
             if (highdigit > 0)
+            {
                 result.Add(highdigit);
+            }
             LargeNumberModel resultNum = new LargeNumberModel();
             result.Reverse();
             resultNum.Digits = result.ToArray();
