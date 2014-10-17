@@ -60,6 +60,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem023", "Problem023\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem025", "Problem025\Problem025.csproj", "{D866FAFD-153A-4D42-A1BC-10C812BB6201}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem048", "Problem048\Problem048.csproj", "{70022017-0998-4297-98C8-5D78BDCFCF7F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ProjectEulerResolves.vsmdi
@@ -323,6 +325,16 @@ Global
 		{D866FAFD-153A-4D42-A1BC-10C812BB6201}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D866FAFD-153A-4D42-A1BC-10C812BB6201}.Release|x86.ActiveCfg = Release|x86
 		{D866FAFD-153A-4D42-A1BC-10C812BB6201}.Release|x86.Build.0 = Release|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Debug|x86.ActiveCfg = Debug|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Debug|x86.Build.0 = Debug|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Release|Any CPU.ActiveCfg = Release|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Release|x86.ActiveCfg = Release|x86
+		{70022017-0998-4297-98C8-5D78BDCFCF7F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -350,5 +362,6 @@ Global
 		{68708775-E384-487F-BCF1-CEA3406C7928} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 		{A2D5C1AE-AFD6-4335-A429-F0EC4C900F26} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 		{D866FAFD-153A-4D42-A1BC-10C812BB6201} = {0D427149-166D-4DA2-8200-AC90D09861F6}
+		{70022017-0998-4297-98C8-5D78BDCFCF7F} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 	EndGlobalSection
 EndGlobal
