@@ -1,4 +1,0 @@
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem018\bin\Debug\Problem018.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem018\bin\Debug\Problem018.pdb
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem018\obj\x86\Debug\Problem018.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem018\obj\x86\Debug\Problem018.pdb

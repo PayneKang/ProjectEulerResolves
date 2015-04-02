@@ -1,8 +1,0 @@
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\bin\Debug\Primes.txt
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\bin\Debug\Problem025.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\bin\Debug\Problem025.pdb
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\bin\Debug\Kang.Algorithm.BaseLib.dll
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\bin\Debug\Kang.Algorithm.BaseLib.pdb
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\obj\x86\Debug\Problem025.csprojResolveAssemblyReference.cache
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\obj\x86\Debug\Problem025.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem025\obj\x86\Debug\Problem025.pdb

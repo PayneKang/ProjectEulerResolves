@@ -1,4 +1,0 @@
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem005\bin\Debug\Problem005.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem005\bin\Debug\Problem005.pdb
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem005\obj\x86\Debug\Problem005.exe
-E:\Payne\ProjectEulerResolves\ProjectEulerResolves\Problem005\obj\x86\Debug\Problem005.pdb
