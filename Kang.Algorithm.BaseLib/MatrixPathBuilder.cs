@@ -9,6 +9,16 @@ namespace Kang.Algorithm.BaseLib
 {
     public class MatrixPathBuilder
     {
+        public static long CountPath(int width)
+        {
+            long count = 2;
+            for (int i = 2; i <= width; i++)
+            {
+                count = (count * 2) + (count / i) * (i - 1) * 2;
+            }
+            return count;
+        }
+
         public MatrixPathBuilder() { TotalCount = 0; }
         public PathNode[][] Matrix { get; private set; }
         public PathNode CurrentNode { get; private set; }
