@@ -14,15 +14,13 @@ namespace Problem015
         static void Main(string[] args)
         {
             Stopwatch sw = new Stopwatch();
-            int width = 10;
-            MatrixPathBuilder mpb = new MatrixPathBuilder();
-            mpb.BuildNodeMartix(width, width);
-                sw.Start();
-                mpb.CountPath(0,0);
-                sw.Stop();
-                sw.Reset();
-                Debug.WriteLine(string.Format("width:{0}, pathCount:{1} ; timeused:{2}", width, mpb.TotalCount, sw.ElapsedMilliseconds));
-        
+            int width = 20;
+            sw.Start();
+            long count =  MatrixPathBuilder.CountPath(width);
+            sw.Stop();
+            sw.Reset();
+            Debug.WriteLine(string.Format("width:{0}, pathCount:{1} ; timeused:{2}", width, count, sw.ElapsedMilliseconds));
+
         }
     }
 }
