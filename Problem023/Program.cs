@@ -10,18 +10,23 @@ namespace Problem023
 {
     class Program
     {
-        const int MAXLENGTH = 28124;
+        const int MAXLENGTH = 28123;
         static void Main(string[] args)
         {
-            bool[] numsequence = new bool[MAXLENGTH];
+            GetResult();
+        }
+        static void GetResult()
+        {
+            bool[] numsequence = new bool[MAXLENGTH + 1];
             List<long> abundantNumbers = findAllAbundantLessThan28123();
+
             for (int i = 0; i < abundantNumbers.Count; i++)
             {
-                if (abundantNumbers[i] + abundantNumbers[i] >= MAXLENGTH)
+                if (abundantNumbers[i] + abundantNumbers[i] > MAXLENGTH)
                     break;
                 for (int j = i; j < abundantNumbers.Count; j++)
                 {
-                    if (abundantNumbers[i] + abundantNumbers[j] < 28124)
+                    if (abundantNumbers[i] + abundantNumbers[j] <= MAXLENGTH)
                     {
                         numsequence[abundantNumbers[i] + abundantNumbers[j]] = true;
                     }
@@ -30,7 +35,7 @@ namespace Problem023
                 }
             }
             long result = 0;
-            for (int i = 0; i < numsequence.Length; i++)
+            for (int i = 0; i < MAXLENGTH; i++)
             {
                 if (!numsequence[i])
                     result += i;
@@ -43,8 +48,10 @@ namespace Problem023
         {
             FactorsGenerator fg = new FactorsGenerator();
             List<long> result = new List<long>();
-            for (int i = 1; i < 28124; i++)
+            for (int i = 1; i < MAXLENGTH; i++)
             {
+                if (i == 28123)
+                    Console.WriteLine();
                 AbundantCheckNumber num = BuildAbundantCheckNumber(i, fg);
                 if (num.NumberType == NumberType.Abundant)
                     result.Add(i);

@@ -22,17 +22,14 @@ namespace Kang.Algorithm.BaseLib
             List<long> result = new List<long>();
             double sqrt = Math.Sqrt(number);
             long lsqrt = 0;
-            bool sp = false;
             lsqrt = (long)sqrt;
-            if (sqrt - (long)sqrt == 0){
-                sp = true;
-            }
             for (long i = lsqrt; i > 0; i--)
             {
                 if (number % i == 0)
                 {
                     result.Add(i);
-                    if(!sp)
+                    long di = number / i;
+                    if( i != di)
                         result.Add(number/i);
                 }
             }
