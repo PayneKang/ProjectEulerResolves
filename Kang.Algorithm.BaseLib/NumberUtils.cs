@@ -11,5 +11,17 @@ namespace Kang.Algorithm.BaseLib
         {
             return int.Parse(numStr.TrimStart(new char[] { '0' }));
         }
+        public static int[] SplitNumber(long number,int splitLength)
+        {
+            int splitNumber = (int)Math.Pow(10,splitLength);
+            List<int> result = new List<int>();
+            long temp = number;
+            while (temp > 0)
+            {
+                result.Add((int)(temp % splitNumber));
+                temp = temp / splitNumber;
+            }
+            return result.ToArray();
+        }
     }
 }

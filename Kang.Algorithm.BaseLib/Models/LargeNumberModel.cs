@@ -54,7 +54,6 @@ namespace Kang.Algorithm.BaseLib.Models
             result.Reverse();
             resultNum.Digits = result.ToArray();
             return resultNum;
-            
         }
         public static LargeNumberModel operator +(LargeNumberModel left, LargeNumberModel right)
         {
@@ -62,7 +61,7 @@ namespace Kang.Algorithm.BaseLib.Models
             LargeNumberModel smaller = left.NumberLength < right.NumberLength ? left : right;
             List<int> result = new List<int>();
             int highdigit = 0;
-            for (int i = bigger.NumberLength - 1, m = smaller.NumberLength - 1; i >= 0 ; i--,m--)
+            for (int i = bigger.NumberLength - 1, m = smaller.NumberLength - 1; i >= 0; i--, m--)
             {
                 if (m >= 0)
                 {
@@ -72,14 +71,31 @@ namespace Kang.Algorithm.BaseLib.Models
                     continue;
                 }
                 int digitb = bigger.Digits[i] + highdigit;
-                result.Add(digitb%10);
+                result.Add(digitb % 10);
                 highdigit = digitb / 10;
             }
             if (highdigit > 0)
                 result.Add(highdigit);
             LargeNumberModel resultNum = new LargeNumberModel();
             result.Reverse();
-            resultNum.Digits = result.ToArray() ;
+            resultNum.Digits = result.ToArray();
+            return resultNum;
+        }
+        public static LargeNumberModel operator ++(LargeNumberModel left)
+        {
+            List<int> result = new List<int>();
+            int highdigit = 1;
+            for (int i = left.NumberLength - 1; i >= 0; i--)
+            {
+                int digitb = left.Digits[i] + highdigit;
+                result.Add(digitb % 10);
+                highdigit = digitb / 10;
+            }
+            if (highdigit > 0)
+                result.Add(highdigit);
+            LargeNumberModel resultNum = new LargeNumberModel();
+            result.Reverse();
+            resultNum.Digits = result.ToArray();
             return resultNum;
         }
     }
