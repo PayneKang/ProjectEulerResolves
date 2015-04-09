@@ -43,6 +43,7 @@
     <Compile Include="AdjancentBuilder.cs" />
     <Compile Include="ClockwiseMatrixBuilder.cs" />
     <Compile Include="CollatzSequenceProvider.cs" />
+    <Compile Include="CombinationProvider.cs" />
     <Compile Include="FactorsGenerator.cs" />
     <Compile Include="FibonacciGenerator.cs" />
     <Compile Include="FileReader.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="MultiplesChecker.cs" />
     <Compile Include="NumberUtils.cs" />
     <Compile Include="PalindromicChecker.cs" />
+    <Compile Include="PermutationProvider.cs" />
     <Compile Include="PrimeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriangleNumberGenerator.cs" />
