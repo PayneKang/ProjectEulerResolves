@@ -50,6 +50,7 @@
     <Compile Include="MatrixPathBuilder.cs" />
     <Compile Include="Models\AbundantCheckNumber.cs" />
     <Compile Include="Models\Direction.cs" />
+    <Compile Include="Models\Fraction.cs" />
     <Compile Include="Models\LargeNumberModel.cs" />
     <Compile Include="Models\PathNode.cs" />
     <Compile Include="MultiplesChecker.cs" />
