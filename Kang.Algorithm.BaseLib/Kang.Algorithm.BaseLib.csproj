@@ -59,6 +59,7 @@
     <Compile Include="PermutationProvider.cs" />
     <Compile Include="PrimeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RotationProvider.cs" />
     <Compile Include="TriangleNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

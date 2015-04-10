@@ -19,6 +19,10 @@ namespace Kang.Algorithm.BaseLib
                 primes[i] = int.Parse(primeArray[i]);
             }
         }
+        public int[] GetPrimesBelowOneMillion()
+        {
+            return primes;
+        }
         public bool CheckPrime(int number)
         {
             if (number <= 1000000)
