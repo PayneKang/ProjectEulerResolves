@@ -13,7 +13,8 @@ namespace Kang.Algorithm.BaseLib.Models
             if (Digits == null)
                 return 0;
             return Digits.Length;
-        } }
+        } 
+        }
         public LargeNumberModel(string numStr)
         {
             Digits = new int[numStr.Length];

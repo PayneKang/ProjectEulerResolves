@@ -23,5 +23,15 @@ namespace Kang.Algorithm.BaseLib
             }
             return result.ToArray();
         }
+        public static int GetNumberLength(long number)
+        {
+            int length = 0;
+            while (number > 0)
+            {
+                length++;
+                number /= 10;
+            }
+            return length;
+        }
     }
 }
