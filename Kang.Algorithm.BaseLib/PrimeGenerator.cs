@@ -52,7 +52,26 @@ namespace Kang.Algorithm.BaseLib
             }
             for (int i = 2; i <= length; i++)
             {
-                for (int m = i; m <= length; m += i )
+                for (int m = i; m <= length; m += i)
+                {
+                    if (m % i == 0 && m != i)
+                    {
+                        numbers[m] = false;
+                    }
+                }
+            }
+            return numbers;
+        }
+        public bool[] CheckPrimeNumber(long length)
+        {
+            bool[] numbers = new bool[length + 1];
+            for (long i = 2; i < numbers.Length; i++)
+            {
+                numbers[i] = true;
+            }
+            for (long i = 2; i <= length; i++)
+            {
+                for (long m = i; m <= length; m += i)
                 {
                     if (m % i == 0 && m != i)
                     {
