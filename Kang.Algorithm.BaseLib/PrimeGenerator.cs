@@ -23,8 +23,11 @@ namespace Kang.Algorithm.BaseLib
         {
             return primes;
         }
-        public bool CheckPrime(int number)
+        public bool CheckPrime(int number, bool useCache = true)
         {
+            if (!useCache)
+                return CheckPrimeOver1000000(number);
+
             if (number <= 1000000)
                 return FoundInPrimes(number);
             return CheckPrimeOver1000000(number);
@@ -36,7 +39,7 @@ namespace Kang.Algorithm.BaseLib
         {
             int sqrt = (int)Math.Sqrt(number);
             sqrt ++;
-            for (int i = 3; i <= sqrt; i ++)
+            for (int i = 2; i <= sqrt; i ++)
             {
                 if (number % i == 0)
                     return false;

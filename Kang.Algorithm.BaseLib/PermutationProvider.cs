@@ -19,15 +19,16 @@ namespace Kang.Algorithm.BaseLib
                 }
                 return result;
             }
-            foreach (T item in seeds)
+            for(int i = 0; i < seeds.Length; i++)
             {
+                T item = seeds[i];
                 T[] chdSeeds = new T[seeds.Length - 1];
-                for (int i = 0, j = 0; i < seeds.Length && j < chdSeeds.Length; i++)
+                for (int j = 0, k = 0; j < seeds.Length && k < chdSeeds.Length; j++)
                 {
-                    if (item.Equals(seeds[i]))
+                    if (j == i)
                         continue;
-                    chdSeeds[j] = seeds[i];
-                    j++;
+                    chdSeeds[k] = seeds[j];
+                    k++;
                 }
                 List<T[]> chdCombination = BuildPermutation<T>(chdSeeds, length - 1);
                 List<T[]> chdResult = new List<T[]>();
