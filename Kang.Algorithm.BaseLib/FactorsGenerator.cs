@@ -78,5 +78,23 @@ namespace Kang.Algorithm.BaseLib
             }
             return result;
         }
+        public List<long> GeneratorFactors(long number)
+        {
+            long tempNumber = number;
+            List<long> result = new List<long>();
+            for (long i = 2; i <= tempNumber; i++)
+            {
+                if (tempNumber == 1)
+                {
+                    break;
+                }
+                while (tempNumber % i == 0)
+                {
+                    result.Add(i);
+                    tempNumber = tempNumber / i;
+                }
+            }
+            return result;
+        }
     }
 }
