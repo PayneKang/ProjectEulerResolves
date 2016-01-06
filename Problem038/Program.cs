@@ -44,7 +44,7 @@ namespace Problem038
                     
                 }
             }
-            Console.WriteLine(string.Format("Result is {0}",maxNum))
+            Console.WriteLine(string.Format("Result is {0}", maxNum));
         }
         static void BuildNumbersToCheck()
         {
