@@ -23,6 +23,18 @@ namespace Kang.Algorithm.BaseLib.Models
                 Digits[i] = int.Parse(new string(numStr[i],1));
             }
         }
+        public override bool Equals(object obj)
+        {
+            LargeNumberModel item = (LargeNumberModel)obj;
+            if (this.NumberLength != item.NumberLength)
+                return false;
+            for (int i = 0; i < this.NumberLength; i++)
+            {
+                if (this.Digits[i] != item.Digits[i])
+                    return false;
+            }
+            return true;
+        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -31,6 +43,15 @@ namespace Kang.Algorithm.BaseLib.Models
                 sb.Append(Digits[i]);
             }
             return sb.ToString();
+        }
+        public static LargeNumberModel operator *(LargeNumberModel left, LargeNumberModel right)
+        {
+            LargeNumberModel result = new LargeNumberModel("0");
+            for (int i = 0; i < right.NumberLength; i++)
+            {
+                result = result + left * (right.Digits[i] * (int)Math.Pow(10, right.NumberLength - i - 1));
+            }
+            return result;
         }
         public static LargeNumberModel operator *(LargeNumberModel left, int right)
         {
@@ -82,6 +103,10 @@ namespace Kang.Algorithm.BaseLib.Models
             resultNum.Digits = result.ToArray();
             return resultNum;
         }
+        public static LargeNumberModel operator +(LargeNumberModel left, int right)
+        {
+            return left + new LargeNumberModel(right.ToString());
+        }
         public static LargeNumberModel operator ++(LargeNumberModel left)
         {
             List<int> result = new List<int>();
@@ -98,6 +123,36 @@ namespace Kang.Algorithm.BaseLib.Models
             result.Reverse();
             resultNum.Digits = result.ToArray();
             return resultNum;
+        }
+        public static bool operator >(LargeNumberModel left, LargeNumberModel right)
+        {
+            if (left.NumberLength > right.NumberLength)
+                return true;
+            if (left.NumberLength < right.NumberLength)
+                return false;
+            for (int i = 0; i < left.NumberLength; i++)
+            {
+                if (left.Digits[i] > right.Digits[i])
+                    return true;
+                if (left.Digits[i] < right.Digits[i])
+                    return false;
+            }
+            return false;
+        }
+        public static bool operator <(LargeNumberModel left, LargeNumberModel right)
+        {
+            if (left.NumberLength > right.NumberLength)
+                return false;
+            if (left.NumberLength < right.NumberLength)
+                return true;
+            for (int i = 0; i < left.NumberLength; i++)
+            {
+                if (left.Digits[i] > right.Digits[i])
+                    return false;
+                if (left.Digits[i] < right.Digits[i])
+                    return true;
+            }
+            return false;
         }
     }
 }
