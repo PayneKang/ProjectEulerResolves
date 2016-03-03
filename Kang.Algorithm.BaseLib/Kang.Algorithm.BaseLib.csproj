@@ -50,6 +50,7 @@
     <Compile Include="FileReader.cs" />
     <Compile Include="MatrixPathBuilder.cs" />
     <Compile Include="Models\AbundantCheckNumber.cs" />
+    <Compile Include="Models\BigIntegerFranction.cs" />
     <Compile Include="Models\Direction.cs" />
     <Compile Include="Models\Fraction.cs" />
     <Compile Include="Models\LargeNumberFractionModel.cs" />

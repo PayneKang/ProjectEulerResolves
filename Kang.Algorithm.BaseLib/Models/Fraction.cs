@@ -7,7 +7,13 @@ namespace Kang.Algorithm.BaseLib.Models
 {
     public class Fraction
     {
+        /// <summary>
+        ///  除数 分子
+        /// </summary>
         public int Divisor { get; set; }
+        /// <summary>
+        /// 被除数 分母
+        /// </summary>
         public int Dividend { get; set; }
         public double GetValue()
         {
@@ -48,6 +54,18 @@ namespace Kang.Algorithm.BaseLib.Models
                 }
             }
             return temp;
+        }
+        public static bool operator >(Fraction left, Fraction right)
+        {
+            int lv = left.Divisor * right.Dividend;
+            int rv = right.Divisor * left.Dividend;
+            return lv > rv;
+        }
+        public static bool operator <(Fraction left, Fraction right)
+        {
+            int lv = left.Divisor * right.Dividend;
+            int rv = right.Divisor * left.Dividend;
+            return lv < rv;
         }
     }
 }
