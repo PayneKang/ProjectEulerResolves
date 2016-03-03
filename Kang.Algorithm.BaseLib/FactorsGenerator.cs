@@ -13,8 +13,10 @@ namespace Kang.Algorithm.BaseLib
     public class FactorsGenerator
     {
         private Dictionary<long, List<long>> dicDistinctFacotors;
+        private int[] primes;
         public FactorsGenerator()
         {
+            this.primes = new PrimeGenerator().GetPrimesBelowOneMillion();
             this.dicDistinctFacotors = new Dictionary<long, List<long>>();
         }
         public List<long> GeneratorDistinctDivisor(long number)
@@ -78,6 +80,27 @@ namespace Kang.Algorithm.BaseLib
             }
             return result;
         }
+        public List<int> GeneratorDistinctFactors(int number)
+        {
+            int tempNumber = number;
+            List<int> result = new List<int>();
+            for (int i = 2; i <= tempNumber; i++)
+            {
+                if (tempNumber == 1)
+                {
+                    break;
+                }
+                if (tempNumber % i == 0)
+                {
+                    result.Add(i);
+                }
+                while (tempNumber % i == 0)
+                {
+                    tempNumber = tempNumber / i;
+                }
+            }
+            return result;
+        }
         public List<long> GeneratorFactors(long number)
         {
             long tempNumber = number;
@@ -93,6 +116,27 @@ namespace Kang.Algorithm.BaseLib
                     result.Add(i);
                     tempNumber = tempNumber / i;
                 }
+            }
+            return result;
+        }
+        public List<int> GeneratorFactorsBelowOneMillion(int number)
+        {
+            long tempNumber = number;
+            List<int> result = new List<int>();
+            foreach (int p in primes)
+            {
+                if (p > tempNumber)
+                    break;
+                if (tempNumber == 1)
+                {
+                    break;
+                }
+                while (tempNumber % p == 0)
+                {
+                    result.Add(p);
+                    tempNumber = tempNumber / p;
+                }
+
             }
             return result;
         }

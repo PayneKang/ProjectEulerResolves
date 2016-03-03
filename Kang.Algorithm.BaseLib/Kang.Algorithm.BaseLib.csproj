@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdjancentBuilder.cs" />
+    <Compile Include="EulerTotientFunction.cs" />
     <Compile Include="ClockwiseMatrixBuilder.cs" />
     <Compile Include="CollatzSequenceProvider.cs" />
     <Compile Include="CombinationProvider.cs" />
