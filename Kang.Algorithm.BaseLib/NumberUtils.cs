@@ -11,6 +11,12 @@ namespace Kang.Algorithm.BaseLib
         {
             return int.Parse(numStr.TrimStart(new char[] { '0' }));
         }
+        /// <summary>
+        /// 将数字分割成几个指定长度的数字
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="splitLength"></param>
+        /// <returns></returns>
         public static int[] SplitNumber(long number,int splitLength)
         {
             int splitNumber = (int)Math.Pow(10,splitLength);

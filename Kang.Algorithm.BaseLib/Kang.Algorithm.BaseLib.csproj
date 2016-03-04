@@ -46,6 +46,7 @@
     <Compile Include="ClockwiseMatrixBuilder.cs" />
     <Compile Include="CollatzSequenceProvider.cs" />
     <Compile Include="CombinationProvider.cs" />
+    <Compile Include="FactorialCalculator.cs" />
     <Compile Include="FactorsGenerator.cs" />
     <Compile Include="FibonacciGenerator.cs" />
     <Compile Include="FileReader.cs" />
