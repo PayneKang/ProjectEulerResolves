@@ -172,6 +172,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem081", "Problem081\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem082", "Problem082\Problem082.csproj", "{B588B8C0-A06E-4210-AA7F-1EC5AD222F32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem083", "Problem083\Problem083.csproj", "{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ProjectEulerResolves.vsmdi
@@ -985,6 +987,16 @@ Global
 		{B588B8C0-A06E-4210-AA7F-1EC5AD222F32}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B588B8C0-A06E-4210-AA7F-1EC5AD222F32}.Release|x86.ActiveCfg = Release|x86
 		{B588B8C0-A06E-4210-AA7F-1EC5AD222F32}.Release|x86.Build.0 = Release|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Debug|x86.ActiveCfg = Debug|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Debug|x86.Build.0 = Debug|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|Any CPU.ActiveCfg = Release|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|x86.ActiveCfg = Release|x86
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
