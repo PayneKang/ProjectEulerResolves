@@ -8,7 +8,7 @@ namespace Problem075
 {
     class Program
     {
-        const long MAXTOTAL = 1500000;
+        const long MAXTOTAL = 120;
         static Dictionary<long, List<long[]>> tri = new Dictionary<long, List<long[]>>();
         static void AddToTri(long total, long[] val)
         {
@@ -90,15 +90,20 @@ namespace Problem075
             int count = 0;
             foreach (long t in totals)
             {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(t + " [");
+
+                foreach (long[] nums in tri[t])
+                {
+                    sb.Append(string.Format(" ({0},{1},{2}) ", nums[0], nums[1], nums[2]));
+                }
+
+                sb.Append("] ");
+                Console.WriteLine(sb.ToString());
                 if (tri[t].Count == 1)
                 {
                     count++;
                 }
-                //Console.WriteLine("total length is {0}", t);
-                //foreach (long[] trig in tri[t])
-                //{
-                //    Console.WriteLine("\t a = {0} , b = {1} , c = {2}", trig[0], trig[1], trig[2]);
-                //}
             }
             Console.WriteLine("Result is {0}", count);
         }

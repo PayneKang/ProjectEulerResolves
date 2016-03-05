@@ -174,6 +174,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem082", "Problem082\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem083", "Problem083\Problem083.csproj", "{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem086", "Problem086\Problem086.csproj", "{E76EB325-8029-4F8B-96AB-F06467F2E7C2}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ProjectEulerResolves.vsmdi
@@ -997,6 +999,16 @@ Global
 		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|x86.ActiveCfg = Release|x86
 		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52}.Release|x86.Build.0 = Release|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Debug|x86.ActiveCfg = Debug|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Debug|x86.Build.0 = Debug|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Release|Any CPU.ActiveCfg = Release|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Release|x86.ActiveCfg = Release|x86
+		{E76EB325-8029-4F8B-96AB-F06467F2E7C2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1081,5 +1093,6 @@ Global
 		{EDDB109A-4214-4BEC-A4C3-E4E6522358B5} = {F328E525-BDE5-4972-972A-9A2A09287974}
 		{BF662321-EC5A-4DCD-B377-E64341F38C92} = {F328E525-BDE5-4972-972A-9A2A09287974}
 		{1CDC4693-451D-454A-A2B4-D5240A1CF9BA} = {F328E525-BDE5-4972-972A-9A2A09287974}
+		{2D6DC22D-F61F-4F58-A0E9-A4D69ABB3F52} = {F328E525-BDE5-4972-972A-9A2A09287974}
 	EndGlobalSection
 EndGlobal
