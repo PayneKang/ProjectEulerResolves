@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{862D5E91-DD60-4E1B-A18B-01DBEEAC746F}</ProjectGuid>
+    <ProjectGuid>{126C90BE-2AF8-4A36-80AC-B9B581CEFCDA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Problem104</RootNamespace>
-    <AssemblyName>Problem104</AssemblyName>
+    <RootNamespace>Problem243</RootNamespace>
+    <AssemblyName>Problem243</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="解题思路.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kang.Algorithm.BaseLib\Kang.Algorithm.BaseLib.csproj">
