@@ -16,12 +16,10 @@ namespace Problem001
                 MultiplesChecker checker = new MultiplesChecker(i, multiples);
                 if (checker.Check())
                 {
-                    Console.WriteLine(i);
                     sum += i;
                 }
             }
             Console.WriteLine(sum);
-            Console.ReadLine();
         }
     }
 }
