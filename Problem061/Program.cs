@@ -9,39 +9,12 @@ namespace Problem061
     {
         const int MAX_LEN = 3;
         static bool found = false;
-        static List<List<int>> calculateResult = new List<List<int>>();
+        static List<int>[] calculateResult = new List<int>[9];
         static void Main(string[] args)
         {
             for (int i = 3; i <= 8; i++)
             {
-                calculateResult.Add(CalculateAll4DigitNumber(i));
-            }
-            List<int> currNum = new List<int>(){calculateResult[0][0]};
-            List<int> skipGroup = new List<int>() { 0 };
-        }
-        static bool FindAnotherNumber(List<int> currentNum, List<int> skipGroup)
-        {
-            if (found)
-            {
-                return true;
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                if (skipGroup.Contains(i))
-                    continue;
-                for(int j = 0; j < calculateResult[i].Count; j++){
-                    
-                    bool findrlt = FindAnotherNumber(currentNum, skipGroup);
-                    if (!findrlt)
-                    {
-                        continue;
-                    }
-                    if (currentNum.Count == MAX_LEN)
-                    {
-                        found = true;
-                        return true;
-                    }
-                }
+                calculateResult[i] = CalculateAll4DigitNumber(i);
             }
         }
         static List<int> CalculateAll4DigitNumber(int seed)
