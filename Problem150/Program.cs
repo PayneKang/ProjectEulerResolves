@@ -31,6 +31,7 @@ namespace Problem150
         {
             List<List<Node>> triangular = new List<List<Node>>();
             InitTriangular(ref triangular);
+            //InitTestData(ref triangular);
             Result minsum = new Result(){SumValue = long.MaxValue};
             for (int i = 2; i <= 6; i++)
             {
@@ -40,6 +41,19 @@ namespace Problem150
             }
         }
 
+
+        static void InitTestData(ref List<List<Node>> triangular)
+        {
+            triangular = new List<List<Node>>()
+            {
+                new List<Node>(){new Node(15)},
+                new List<Node>(){new Node(-14),new Node(-7)},
+                new List<Node>(){new Node(20),new Node(-13),new Node(-5)},
+                new List<Node>(){new Node(-3),new Node(8),new Node(23),new Node(-26)},
+                new List<Node>(){new Node(1),new Node(-4),new Node(-5),new Node(-18),new Node(5)},   
+                new List<Node>(){new Node(-16),new Node(31),new Node(2),new Node(9),new Node(28),new Node(3)}
+            };
+        }
         static void InitTriangular(ref List<List<Node>> triangular)
         {
             long t = 0;
