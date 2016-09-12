@@ -1,120 +1,169 @@
-<<<<<<< .mine
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Text;
 
 namespace Problem061
 {
     public class NumberModel{
         public int NumberValue { get; set; }
-        public List<NumberModel> NextNumber { get; set; }
+        public Dictionary<string,List<NumberModel>> NextNumber { get; set; }
     }    
     class Program
     {
-        static List<int> BuildFormulaNumbers(Func<int, int> func)
+        public static string[] totalKeys = new string[] {"Triangle","Square","Pentagonal"};
+        static List<NumberModel> BuildFormulaNumbers(Func<int, NumberModel> func)
         {
-            List<int> result = new List<int>();
+            List<NumberModel> result = new List<NumberModel>();
             // Triangle
-            int rlt = 0;
+            NumberModel rlt = new NumberModel() { NumberValue = 0, NextNumber = new Dictionary<string, List<NumberModel>>() };
             int i = 1;
-            while (rlt < 10000)
+            while (rlt.NumberValue < 10000)
             {
                 rlt = func(i);
                 i++;
-                if (rlt < 1000)
+                if (rlt.NumberValue < 1000)
                     continue;
-                if (rlt >= 10000)
+                if (rlt.NumberValue >= 10000)
                     break;
-                if (!result.Contains(rlt))
+                if (result.Count(x=>x.NumberValue.Equals(rlt.NumberValue)) == 0)
                     result.Add(rlt);
             }
             return result;
         }
-        static List<int> BuildNumbers()
+        static Dictionary<string, List<NumberModel>> BuildNumbers()
         {
-            List<int> result = new List<int>();
-            result.AddRange(BuildFormulaNumbers(Triangle));
-            result.AddRange(BuildFormulaNumbers(Square));
-            result.AddRange(BuildFormulaNumbers(Pentagonal));
-            result.AddRange(BuildFormulaNumbers(Hexagonal));
-            result.AddRange(BuildFormulaNumbers(Heptagonal));
-            result.AddRange(BuildFormulaNumbers(Octagonal));
+            Dictionary<string, List<NumberModel>> result = new Dictionary<string, List<NumberModel>>();
+            result.Add("Triangle",BuildFormulaNumbers(Triangle));
+            result.Add("Square",BuildFormulaNumbers(Square));
+            result.Add("Pentagonal",BuildFormulaNumbers(Pentagonal));
+            result.Add("Hexagonal", BuildFormulaNumbers(Hexagonal));
+            result.Add("Heptagonal",BuildFormulaNumbers(Heptagonal));
+            result.Add("Octagonal",BuildFormulaNumbers(Octagonal));
+            
             return result;
         }
+
+        static Dictionary<string, NumberModel> resultQueue = new Dictionary<string, NumberModel>();
+        private const int TARGET_LENGTH = 6;
+        static Dictionary<string, List<NumberModel>> numbers = BuildNumbers();
         static void Main(string[] args)
         {
-            List<int> numbers = BuildNumbers();
-            List<NumberModel> nms = new List<NumberModel>();
-            foreach (int num in numbers)
+            SetNextNumber();
+            foreach (var number in numbers["Triangle"])
             {
-                nms.Add(new NumberModel() { NextNumber = new List<NumberModel>(), NumberValue = num });
-            }
-            int len = 0;
-            while (len < 4)
-            {
-                if (len == 0)
+                if (number.NumberValue == 8128)
                 {
-                    for (int i = 0; i < nms.Count; i++)
+                    
+                }
+                foreach (var key in totalKeys)
+                {
+                    if (resultQueue.ContainsKey(key))
+                        resultQueue.Remove(key);
+                    
+                }
+                resultQueue.Add("Triangle", number);
+                CheckNextNumber();
+            }
+        }
+
+        private static bool foundResult = false;
+        static void CheckNextNumber()
+        {
+            if (foundResult)
+                return;
+            NumberModel currNum = resultQueue.Values.Last();
+            string[] nextNumKeys = currNum.NextNumber.Keys.ToArray();
+            foreach (string currKey in nextNumKeys)
+            {
+                if (resultQueue.ContainsKey(currKey))
+                    continue;
+                if (currNum.NextNumber[currKey] == null)
+                    continue;
+                if (currNum.NextNumber[currKey].Count == 0)
+                    continue;
+                for (int i = 0; i < currNum.NextNumber[currKey].Count; i++)
+                {
+                    if (currKey.Equals("Square") && currNum.NextNumber[currKey][i].NumberValue == 2882)
                     {
-                        for (int j = 0; j < nms.Count; j++)
+
+                    }
+                    if (currKey.Equals("Pentagonal") && currNum.NextNumber[currKey][i].NumberValue == 8281)
+                    {
+
+                    }
+                    NumberModel nextNumber = currNum.NextNumber[currKey][i];
+                    if (!CheckNext(currNum, nextNumber))
+                        continue;
+                    resultQueue.Add(currKey,nextNumber);
+                    if (resultQueue.Count != TARGET_LENGTH)
+                    {
+                        CheckNextNumber();
+                        resultQueue.Remove(currKey);
+                        continue;
+                    }
+
+                    if (!CheckNext(nextNumber, resultQueue["Triangle"]))
+                    {
+                        CheckNextNumber();
+                        resultQueue.Remove(currKey);
+                        continue;
+                    }
+
+                    foundResult = true;
+                    int result = 0;
+                    foreach (var n in resultQueue.Values)
+                    {
+                        result += n.NumberValue;
+                    }
+                    Console.WriteLine("result is {0}", result);
+                }
+            }
+
+        }
+
+        static void SetNextNumber()
+        {
+            string[] keys = numbers.Keys.ToArray();
+            foreach (string key in keys)
+            {
+                foreach (NumberModel currNum in numbers[key])
+                {
+                    foreach (string subKey in keys)
+                    {
+                        if (key.Equals(subKey))
+                            continue;
+                        foreach (NumberModel nextNum in numbers[subKey])
                         {
-                            if (nms[i].NumberValue % 100 != nms[j].NumberValue / 100)
+                            if (!CheckNext(currNum, nextNum))
                                 continue;
-                            if (nms[i].NextNumber.Contains(nms[j]))
-                                continue;
-                            nms[i].NextNumber.Add(nms[j]);
+                            if (!currNum.NextNumber.ContainsKey(subKey))
+                                currNum.NextNumber.Add(subKey,new List<NumberModel>());
+                            currNum.NextNumber[subKey].Add(nextNum);
                         }
                     }
-                    len++;
-                    continue;
+                    
                 }
-                for (int i = 0; i < nms.Count; i++)
-                {
-                    for (int j = 0; j < nms.Count; j++)
-                    {
-                        if (nms[i].NextNumber.LastOrDefault().NumberValue % 100 != nms[j].NumberValue / 100)
-                            continue;
-                        if (nms[i].NextNumber.Contains(nms[j]))
-                            continue;
-                        nms[i].NextNumber.Add(nms[j]);
-                    }
-                }
-                len++;
             }
         }
-        static List<List<NumberModel>> CheckNextNumber(NumberModel current, int currentLen, NumberModel startNum, bool checkend)
+
+        static bool CheckNext(NumberModel firstNum, NumberModel secondNumber)
         {
-            if (checkend)
-            {
-                foreach (NumberModel nm in current.NextNumber)
-                {
-                    if (nm.NumberValue % 100 == startNum.NumberValue / 100)
-                    {
-                        return new List<List<NumberModel>>() { new List<NumberModel>() { nm } };
-                    }
-                }
-                return null;
-            }
-            foreach (NumberModel nm in current.NextNumber)
-            {
-                bool checknext = false;
-                if (currentLen == 1)
-                    checknext = true;
-                List<List<NumberModel>> next = CheckNextNumber(nm, currentLen - 1, startNum, checknext);
-                foreach(List<NumberModel>()
-            }
+            if ((firstNum.NumberValue%100).Equals(secondNumber.NumberValue/100))
+                return true;
+            return false;
         }
-        static int Triangle(int n) { return (n * (n + 1)) / 2; }
-        static int Square(int n) { return n * n; }
-        static int Pentagonal(int n) { return (n * (3 * n - 1)) / 2; }
-        static int Hexagonal(int n) { return n * (2 * n - 1); }
-        static int Heptagonal(int n) { return (n * (5 * n - 3)) / 2; }
-        static int Octagonal(int n) { return n * (3 * n - 2); }
+        static NumberModel Triangle(int n) { return new NumberModel() { NumberValue = (n * (n + 1)) / 2, NextNumber = new Dictionary<string, List<NumberModel>>() }; }
+        static NumberModel Square(int n) { return new NumberModel() { NumberValue = n * n, NextNumber = new Dictionary<string, List<NumberModel>>() }; }
+        static NumberModel Pentagonal(int n) { return new NumberModel() { NumberValue = (n * (3 * n - 1)) / 2, NextNumber = new Dictionary<string, List<NumberModel>>() }; }
+        static NumberModel Hexagonal(int n) { return new NumberModel() { NumberValue = n * (2 * n - 1), NextNumber = new Dictionary<string, List<NumberModel>>() }; }
+        static NumberModel Heptagonal(int n) { return new NumberModel() { NumberValue = (n * (5 * n - 3)) / 2, NextNumber = new Dictionary<string, List<NumberModel>>() }; }
+        static NumberModel Octagonal(int n) { return new NumberModel() { NumberValue = n * (3 * n - 2), NextNumber = new Dictionary<string, List<NumberModel>>() }; }
     }
 }
-||||||| .r0
-=======
+
+/*
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -192,5 +241,4 @@ namespace Problem061
             return n * (3 * n - 2);
         }
     }
-}
->>>>>>> .r110
+}*/
