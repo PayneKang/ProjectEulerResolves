@@ -9,41 +9,32 @@ namespace Problem070
     class Program
     {
         const int MAXNUM = 10000000;
+        private static int[] Phis = new int[MAXNUM];
+        static bool[] primes = new PrimeGenerator().CheckPrimeNumber(MAXNUM);
+
         static void Main(string[] args)
         {
-            PrimeGenerator pg = new PrimeGenerator();
-            bool[] primes = pg.CheckPrimeNumber(MAXNUM);
-            List<int> allPrimes = new List<int>();
+            Phis[0] = 0;
+            Phis[1] = 1;
             for (int i = 2; i < MAXNUM; i++)
             {
-                if (primes[i])
-                {
-                    allPrimes.Add(i);
-                }
+                Phis[i] = i - 1;
             }
-            int phi87109 = Phi(87109, allPrimes);
-            int num = 1;
-            for (int i = 1; i < MAXNUM; i++)
+            for (int i = 2; i < MAXNUM; i++)
             {
-                int phi = Phi(i, allPrimes);
-                if(i % 100 == 0)
-                    Console.WriteLine("Phi of {0} is {1}", i, phi);
-            }
-        }
-        static int Phi(int num, List<int> primes)
-        {
-            int tmp = num;
-            foreach (int p in primes)
-            {
-                if (num % p != 0)
+                if (!primes[i])
                 {
                     continue;
                 }
-                if (p > num)
-                    break;
-                tmp = tmp - tmp / p;
+                int index = i + i;
+                int count = 1;
+                while (index < MAXNUM)
+                {
+                    Phis[index] -= count;
+                    count ++;
+                    index += i;
+                }
             }
-            return tmp;
         }
     }
 }
