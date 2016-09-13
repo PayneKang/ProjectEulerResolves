@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Kang.Algorithm.BaseLib
 {
+    /// <summary>
+    /// 元素排列生成器
+    /// </summary>
     public class PermutationProvider
     {
         private PermutationProvider() { }
