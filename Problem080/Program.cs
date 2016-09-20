@@ -5,78 +5,105 @@ using System.Text;
 using System.Numerics;
 using Kang.Algorithm.BaseLib;
 using Kang.Algorithm.BaseLib.Models;
+using System.Diagnostics;
 
 namespace Problem080
 {
+    public class SqrtResult
+    {
+        public int IntergerValue { get; set; }
+        public List<int> DecimalDigits { get; set; }
+        public override string ToString()
+        {
+            return string.Format("{0}.{1}", this.IntergerValue, string.Join("", this.DecimalDigits));
+        }
+    }
     class Program
     {
         static int MAXLEN = 100;
         static void Main(string[] args)
         {
-            LargeNumberModel ln = new LargeNumberModel("123123895345345");
-            //int result = 0;
-            //for (int i = 2; i <= MAXLEN; i++)
-            //{
-            //    SquareRootRepeatIndefiniteCalculator.SqrtResultModel rlt = SquareRootRepeatIndefiniteCalculator.FindNumSqrtInteger(i);
-            //    if (null == rlt)
-            //        continue;
-            //    int[] seeds = buildSequrence(rlt.Sequrence);
-            //    LargeNumberModel[] frac = BuildFractionResult((int)Math.Sqrt(i), seeds, 0);
-            //    //List<int> calRlt = CalculateFrac(frac);
-            //    //int numSum = calRlt.Sum();
-            //}
-            //Console.WriteLine(string.Format("result is {0}", result));
-        }
-
-        //static List<int> CalculateFrac(LargeNumberModel[] frac)
-        //{
-        //    List<int> result = new List<int>();
-        //    // 分子
-        //    LargeNumberModel dividend = frac[0];
-        //    // 分亩
-        //    LargeNumberModel divisor = frac[1];
-        //    // 去除整数部分；
-        //    BigInteger intPart = 0;
-        //    if (dividend > divisor)
-        //    {
-        //        intPart++;
-        //        dividend = dividend - divisor;
-        //    }
-        //    for (int i = 0; i < MAXLEN; i++)
-        //    {
-        //        int rlt = (int)((intPart * 10) /divisor);
-        //        intPart = intPart * 10 % divisor;
-        //        result.Add(rlt);
-        //    }
-        //    return result;
-        //}
-
-
-        static LargeNumberModel[] BuildFractionResult(int baseNum, int[] seeds, int len)
-        {
-            int index = len % seeds.Length;
-            if (len == MAXLEN)
+            int sum = 0;
+            for (int i = 1; i <= 100; i++)
             {
-                if (len == 0)
-                    return new LargeNumberModel[] { new LargeNumberModel(baseNum.ToString()), new LargeNumberModel("1") };
-                return new LargeNumberModel[] { new LargeNumberModel(seeds[index - 1].ToString()), new LargeNumberModel("1") };
+                SqrtResult rlt = Sqrt(i, 99);
+                if (rlt.DecimalDigits == null)
+                    continue;
+                sum += rlt.DecimalDigits.Sum() + rlt.IntergerValue;
             }
-            int nextBase = seeds[index];
-            len++;
-            LargeNumberModel[] chdFrac = BuildFractionResult(nextBase, seeds, len);
-            LargeNumberModel dividend = chdFrac[0];
-            LargeNumberModel divisor = dividend * baseNum + chdFrac[1];
-            return new LargeNumberModel[] { divisor, dividend };
+            Console.WriteLine("Result is {0}", sum);
         }
-
-        static int[] buildSequrence(List<SquareRootRepeatIndefiniteCalculator.FormulaItem> lst)
+        static SqrtResult Sqrt(int num,int digits)
         {
-            int[] rlt = new int[lst.Count];
-            for (int i = 0; i < lst.Count; i++)
+            
+            List<int> splite = spliteNum(num);
+            int remain = 0;
+            int currVal = 0;
+            bool isFirst = true;
+            int integerValue = 0;
+            // 计算整数部分
+            for (int i = splite.Count - 1; i >= 0; i--)
             {
-                rlt[i] = lst[i].IntegerNumber;
+                int currPart = 0;
+                if (isFirst)
+                {
+                    currPart = splite[i] + remain * 100;
+                    currVal = (int)Math.Sqrt(currPart);
+                    remain = currPart - currVal * currVal;
+                    integerValue = integerValue * 10 + currVal;
+                    isFirst = false;
+                    continue;
+                }
+                currPart = splite[i] + remain * 100;
+                int p = 0;
+                int sum = (integerValue * 20 + p) * p;
+                while (sum <= currPart)
+                {
+                    p++;
+                    sum = (integerValue * 20 + p) * p;
+                }
+                p--;
+                sum = (integerValue * 20 + p) * p;
+                integerValue = integerValue * 10 + p;
+                remain = currPart - sum;
+            }
+            if (remain == 0)
+            {
+                return new SqrtResult() { IntergerValue = integerValue };
+            }
+            SqrtResult rlt = new SqrtResult() { IntergerValue = integerValue, DecimalDigits = new List<int>() };
+            // 计算小数部分
+            BigInteger bIntVal = integerValue;
+            BigInteger bRemain = remain;
+            for (int i = 0; i < digits; i++)
+            {
+                BigInteger currPart = bRemain * 100;
+                int p = 1;
+                BigInteger sum = (bIntVal * 20 + p) * p;
+                while (sum <= currPart)
+                {
+                    p++;
+                    sum = (bIntVal * 20 + p) * p;
+                }
+                p--;
+                sum = (bIntVal * 20 + p) * p;
+                bRemain = currPart - sum;
+                bIntVal = bIntVal * 10 + p;
+                rlt.DecimalDigits.Add(p);
             }
             return rlt;
+        }
+        static List<int> spliteNum(int num)
+        {
+            List<int> split= new List<int>();
+            int temp = num;
+            if (temp >= 100)
+            {
+                split.Add(temp % 100);
+                temp = temp / 100;
+            }
+            split.Add(temp);
+            return split;
         }
     }
 }
