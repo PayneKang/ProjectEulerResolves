@@ -212,6 +212,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem150", "Problem150\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem068", "Problem068\Problem068.csproj", "{5C6ED6C1-4068-4016-AFAA-6D7884A88E7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem085", "Problem085\Problem085.csproj", "{9B3AAB36-AED8-486D-8FF3-A55033FE4009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1212,6 +1214,16 @@ Global
 		{5C6ED6C1-4068-4016-AFAA-6D7884A88E7A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5C6ED6C1-4068-4016-AFAA-6D7884A88E7A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5C6ED6C1-4068-4016-AFAA-6D7884A88E7A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1315,6 +1327,7 @@ Global
 		{DB68623E-8E87-4508-A702-F2677B3DE893} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 		{9B9DB82E-4E7B-437B-B31A-BC4D2CCD774C} = {F328E525-BDE5-4972-972A-9A2A09287974}
 		{5C6ED6C1-4068-4016-AFAA-6D7884A88E7A} = {0D427149-166D-4DA2-8200-AC90D09861F6}
+		{9B3AAB36-AED8-486D-8FF3-A55033FE4009} = {0D427149-166D-4DA2-8200-AC90D09861F6}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ProjectEulerResolves.vsmdi
