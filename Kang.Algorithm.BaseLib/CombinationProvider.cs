@@ -8,6 +8,40 @@ namespace Kang.Algorithm.BaseLib
     public class CombinationProvider
     {
         private CombinationProvider() { }
+        public static List<T[]> BuildDistinctCombination<T>(T[] seeds, int length)
+        {
+            List<T[]> result = new List<T[]>();
+            if (length == 1)
+            {
+                foreach (T item in seeds)
+                {
+                    result.Add(new T[] { item });
+                }
+                return result;
+            }
+            for (int i = 0; i < seeds.Count(); i++)
+            {
+                T item = seeds[i];
+
+                T[] chdSeeds = new T[seeds.Length - 1 - i];
+                for (int j = i+1, k = 0; j < seeds.Length && k < chdSeeds.Length; j++)
+                {
+                    chdSeeds[k] = seeds[j];
+                    k++;
+                }
+                List<T[]> chdCombination = BuildDistinctCombination<T>(chdSeeds, length - 1);
+                List<T[]> chdResult = new List<T[]>();
+                foreach (T[] chdItem in chdCombination)
+                {
+                    T[] tempItem = new T[length];
+                    chdItem.CopyTo(tempItem, 0);
+                    tempItem[length - 1] = item;
+                    chdResult.Add(tempItem);
+                }
+                result.AddRange(chdResult);
+            }
+            return result;
+        }
         public static List<T[]> BuildCombination<T>(T[] seeds, int length)
         {
             List<T[]> result = new List<T[]>();
