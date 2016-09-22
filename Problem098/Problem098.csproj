@@ -47,7 +47,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="p098_words.txt" />
+    <Content Include="p098_words.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kang.Algorithm.BaseLib\Kang.Algorithm.BaseLib.csproj">
+      <Project>{00d99943-038e-4583-ad9e-760936006716}</Project>
+      <Name>Kang.Algorithm.BaseLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

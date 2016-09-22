@@ -76,6 +76,18 @@ namespace Problem096
                 }
             }
         }
+        static bool CheckPuzzle(SudokuPuzzle puzzle)
+        {
+            foreach(SudokuItem[] row in puzzle.Item){
+                foreach (SudokuItem item in row)
+                {
+                    if (item.Val == 0)
+                        return false;
+                }
+            }
+            return true;
+                
+        }
         static SudokuPuzzle SolvePuzzle(SudokuPuzzle puzzle, int startRow, int startColumn)
         {
             // 开始解谜题
@@ -130,13 +142,17 @@ namespace Problem096
             for (int n = 0; n < puzzles.Count; n++)
             {
                 SudokuPuzzle puzzle = puzzles[n];
-                for (int i = 0; i < 9; i++)
+                // 整理出所有的可能值
+                while (!puzzle.IsSolved)
                 {
-                    for (int j = 0; j < 9; j++)
+                    for (int i = 0; i < 9; i++)
                     {
-                        if (!puzzles[n].Item[i][j].IsConfirmed)
-                            continue;
-                        puzzle = ClearPossiblesForACell(i, j, puzzle);
+                        for (int j = 0; j < 9; j++)
+                        {
+                            if (!puzzles[n].Item[i][j].IsConfirmed)
+                                continue;
+                            puzzle = ClearPossiblesForACell(i, j, puzzle);
+                        }
                     }
                 }
             }
