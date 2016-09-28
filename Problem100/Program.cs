@@ -10,23 +10,18 @@ namespace Problem100
     {
         static void Main(string[] args)
         {
-            long result = 0;
-            long totalCount = 0;
-            for (long n = 2; ; n++)
+            long blueCount = 15;
+            long totalCount = 21;
+            long target = 1000000000000;
+
+            while (totalCount < target)
             {
-                double a = Math.Sqrt(n) * Math.Sqrt(n - 1) *Math.Sqrt(0.5d);
-                long num = (long)a;
-                
-                Console.WriteLine(((double)num * ((double)num + 1) )/ ((double)n * ((double)n-1)));
-                BigInteger ba = num;
-                BigInteger bn = n;
-                if ((bn * (bn - 1)) == 2 * (ba * (ba + 1)))
-                {
-                    result = num + 1;
-                    totalCount = n;
-                    
-                }
+                long tempBlue = 3*blueCount + 2*totalCount - 2;
+                long tempTotal = 4*blueCount + 3*totalCount - 3;
+                blueCount = tempBlue;
+                totalCount = tempTotal;
             }
+            Console.WriteLine("Result is {0}", blueCount);
         }
     }
 }
