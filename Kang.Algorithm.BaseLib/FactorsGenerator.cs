@@ -101,6 +101,11 @@ namespace Kang.Algorithm.BaseLib
             }
             return result;
         }
+        /// <summary>
+        /// 获取一个数的质因数
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public List<long> GeneratorFactors(long number)
         {
             long tempNumber = number;

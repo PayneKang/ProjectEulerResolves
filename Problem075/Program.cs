@@ -3,109 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using Kang.Algorithm.BaseLib;
 
 namespace Problem075
 {
-    class Program
+    internal class Program
     {
-        const long MAXTOTAL = 120;
-        static Dictionary<long, List<long[]>> tri = new Dictionary<long, List<long[]>>();
-        static void AddToTri(long total, long[] val)
-        {
-            foreach (long[] tmp in tri[total])
-            {
-                if (tmp.OrderBy(x => x).First() == val.OrderBy(x => x).First())
-                    return;
-            }
-            tri[total].Add(val);
-        }
-        static void Main(string[] args)
-        {
-            int max = (int)((float)MAXTOTAL / (2 + Math.Sqrt(2)));
-            for (int a = 3; a <= max; a += 2)
-            {
-                long n = (a - 1) / 2;
-                long b = 2 * n * (n + 1);
-                long c = b + 1;
-                long total = a + b + c;
-                if (total > MAXTOTAL)
-                    continue;
-                if (!tri.ContainsKey(total))
-                {
-                    tri.Add(total, new List<long[]>());
-                }
-                AddToTri(total, new long[] { a, b, c });
-                int i = 1;
-                while (true)
-                {
-                    i++;
-                    long tTotal = total * i;
-                    if (tTotal > MAXTOTAL)
-                    {
-                        break;
-                    }
-                    long ta = a * i;
-                    long tb = b * i;
-                    long tc = c * i;
-                    if (!tri.ContainsKey(tTotal))
-                    {
-                        tri.Add(tTotal, new List<long[]>());
-                    }
-                    AddToTri(tTotal, new long[] { ta, tb, tc });
-                }
-            }
-            for (int a = 6; a <= max; a += 2)
-            {
-                long n = a / 2;
-                long b = n * n - 1;
-                long c = n * n + 1;
-                long total = a + b + c;
-                if (total > MAXTOTAL)
-                    continue;
-                if (!tri.ContainsKey(total))
-                {
-                    tri.Add(total, new List<long[]>());
-                }
-                AddToTri(total, new long[] { a, b, c });
-                int i = 1;
-                while (true)
-                {
-                    i++;
-                    long tTotal = total * i;
-                    if (tTotal > MAXTOTAL)
-                    {
-                        break;
-                    }
-                    long ta = a * i;
-                    long tb = b * i;
-                    long tc = c * i;
-                    if (!tri.ContainsKey(tTotal))
-                    {
-                        tri.Add(tTotal, new List<long[]>());
-                    }
-                    AddToTri(tTotal, new long[] { ta, tb, tc });
-                }
-            }
-            List<long> totals = tri.Keys.ToArray().OrderBy(x => x).ToList();
-            int count = 0;
-            foreach (long t in totals)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append(t + " [");
 
-                foreach (long[] nums in tri[t])
-                {
-                    sb.Append(string.Format(" ({0},{1},{2}) ", nums[0], nums[1], nums[2]));
-                }
+        private static void Main(string[] args)
+        {
+            long gcd = NumberUtils.GCD(50, 40);
+            // a = m ^ 2 - n ^ 2;
+            // b = 2 * m * n
+            // c = m ^ 2 + n ^ 2
+            // a ^ 2 + b ^ 2 = m ^ 4 + n ^ 4 + 2 * m ^ 2 * n ^ 2 = (m ^ 2 + n ^ 2) ^ 2 = c ^ 2
+            long limit = 1500000;
+            long[] triangles = new long[limit + 1];
 
-                sb.Append("] ");
-                Console.WriteLine(sb.ToString());
-                if (tri[t].Count == 1)
+            long result = 0;
+            long mlimit = (long)Math.Sqrt(limit / 2);
+
+            for (long m = 2; m < mlimit; m++)
+            {
+                for (long n = 1; n < m; n++)
                 {
-                    count++;
+                    if (((n + m)%2) != 1)
+                        continue;
+                    if (NumberUtils.GCD(m, n) != 1)
+                        continue;
+                    long a = m*m + n*n;
+                    long b = m*m - n*n;
+                    long c = 2*m*n;
+                    long p = a + b + c;
+                    while (p <= limit)
+                    {
+                        triangles[p]++;
+                        if (triangles[p] == 1) result++;
+                        if (triangles[p] == 2) result--;
+                        p += a + b + c;
+                    }
                 }
             }
-            Console.WriteLine("Result is {0}", count);
+            Console.WriteLine("Result is {0}", result);
         }
     }
 }

@@ -39,5 +39,42 @@ namespace Kang.Algorithm.BaseLib
             }
             return length;
         }
+
+        public static long GCD(long numa, long numb)
+        {
+            FactorsGenerator fg = new FactorsGenerator();
+            List<long> fa = fg.GeneratorFactors(numa);
+            List<long> fb = fg.GeneratorFactors(numb);
+            int ai = 0,bi = 0;
+            List<long> crossf = new List<long>();
+            while (ai < fa.Count && bi < fb.Count)
+            {
+                long a = fa[ai];
+                long b = fb[bi];
+                if (a == b)
+                {
+                    crossf.Add(a);
+                    ai++;
+                    bi++;
+                    continue;
+                }
+                if (a < b)
+                {
+                    ai++;
+                    continue;
+                }
+                if (a > b)
+                {
+                    bi++;
+                    continue;
+                }
+            }
+            long result = 1;
+            foreach (var c in crossf)
+            {
+                result *= c;
+            }
+            return result;
+        }
     }
 }
