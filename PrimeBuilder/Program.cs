@@ -12,12 +12,11 @@ namespace PrimeBuilder
     {
         static void Main(string[] args)
         {
-            string str = FileReader.ReadFile(@"D:\primes.txt");
-            string[] nums = str.Split(',');
-            /*
             long bi = 2;
-            int max = 100000000;
+            int max = 1000000000;
             bool[] mark = new bool[max + 1];
+            mark[0] = true;
+            mark[1] = true;
             PrimeGenerator pg = new PrimeGenerator();
             while (bi < max)
             {
@@ -26,13 +25,6 @@ namespace PrimeBuilder
                     bi++;
                     continue;
                 }
-                //Console.WriteLine("Check prime {0}",bi);
-                if (!pg.CheckPrime(bi))
-                {
-                    bi++;
-                    continue;
-                }
-
                 long start = bi * 2;
                 for (long i = start; i <= max; i += bi)
                 {
@@ -40,22 +32,18 @@ namespace PrimeBuilder
                 }
                 bi++;
             }
-
-            FileStream fs = File.Open(@"D:\primes.txt", FileMode.Create);
-            for (int i = 2; i < max + 1; i++)
+            int count = mark.Count(x => x == false);
+            StringBuilder sb = new StringBuilder("2");
+            for (int i = 3; i < max + 1; i++)
             {
                 if (mark[i])
                     continue;
-
-                byte[] buffer = Encoding.UTF8.GetBytes(string.Format("{0},", i));
-                fs.Write(buffer, 0, buffer.Length);
-                Console.WriteLine("{0}");
+                sb.Append(string.Format(",{0}", i));
             }
+            FileStream fs = File.Open(@"D:\primes.txt", FileMode.Create);
+            byte[] buffer = Encoding.UTF8.GetBytes(sb.ToString());
+            fs.Write(buffer, 0, buffer.Length);            
             fs.Close();
-            if (bi < 0)
-            {
-                throw new Exception("out of long range");
-            }*/
 
         }
     }
