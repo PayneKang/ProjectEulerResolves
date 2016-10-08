@@ -11,29 +11,39 @@ namespace Problem104
     {
         static void Main(string[] args)
         {
-            BigInteger rightA = 1;
-            BigInteger rightB = 1;
-            BigInteger firstA = 1;
-            BigInteger firstB = 1;
-            int i = 3;
+            BigInteger fn1 = 1;
+            BigInteger fn2 = 1;
+            BigInteger fn;
+            BigInteger tailcut = 1000000000;
+            int n = 2;
             while (true)
             {
-                BigInteger temp = rightA;
-                rightA = rightB;
-                rightB = temp + rightB;
-                Console.WriteLine(rightB);
-                //if (rightB >= 1000000000)
-                //    rightB = rightB % 1000000000;
-                //temp = firstA;
-                //firstA = firstB;
-                //firstB = temp + firstA;
-                //IEnumerable<char> lastNineDigits = rightB.ToString().ToArray();
-                //if (lastNineDigits.Where(x => x != 0).Distinct().Count() == 9)
-                //{
-                //    break;
-                //}
-                i++;
+                n++;
+                fn = fn1 + fn2;
+                long tail = (long)(fn % tailcut);
+                fn1 = fn2;
+                fn2 = fn;
+                if (!IsPandigital(tail))
+                    continue;
+                int digits = 1 + (int) BigInteger.Log10(fn);
+                if(digits <= 9)
+                    continue;
+                long head = (long) (fn/BigInteger.Pow(10, digits - 9));
+                if (IsPandigital(head))
+                    break;
             }
+            Console.WriteLine("Result is {0}",n);
+        }
+
+        static bool IsPandigital(long num)
+        {
+            List<int> nums = new List<int>();
+            while (num > 0)
+            {
+                nums.Add((int)(num % 10));
+                num = num/10;
+            }
+            return nums.Where(x => x != 0).Distinct().Count() == 9;
         }
     }
 }
