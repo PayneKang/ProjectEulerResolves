@@ -32,14 +32,34 @@ namespace Kang.Algorithm.BaseLib
                 return FoundInPrimes(number);
             return CheckPrimeOver1000000(number);
         }
+        public bool CheckPrime(long number, bool useCache = true)
+        {
+            if (!useCache)
+                return CheckPrimeOver1000000(number);
+
+            if (number <= 1000000)
+                return FoundInPrimes((int)number);
+            return CheckPrimeOver1000000(number);
+        }
         private bool FoundInPrimes(int number){
             return primes.Contains(number);
         }
         private bool CheckPrimeOver1000000(int number)
         {
             int sqrt = (int)Math.Sqrt(number);
-            sqrt ++;
-            for (int i = 2; i <= sqrt; i ++)
+            sqrt++;
+            for (int i = 2; i <= sqrt; i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+            return true;
+        }
+        private bool CheckPrimeOver1000000(long number)
+        {
+            long sqrt = (long)Math.Sqrt(number);
+            sqrt++;
+            for (long i = 2; i <= sqrt; i++)
             {
                 if (number % i == 0)
                     return false;
