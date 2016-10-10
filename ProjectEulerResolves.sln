@@ -223,6 +223,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem091", "Problem091\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeBuilder", "PrimeBuilder\PrimeBuilder.csproj", "{7D6E691F-A400-4BD1-87D8-D8D12EF4C82F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{66233B99-53FC-4E6B-A0EA-EA69940CB811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem569", "Problem569\Problem569.csproj", "{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1303,6 +1307,16 @@ Global
 		{7D6E691F-A400-4BD1-87D8-D8D12EF4C82F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7D6E691F-A400-4BD1-87D8-D8D12EF4C82F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7D6E691F-A400-4BD1-87D8-D8D12EF4C82F}.Release|x86.ActiveCfg = Release|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6BE83542-BDE8-4951-8CCA-23ACF690FF5E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1413,6 +1427,7 @@ Global
 		{7F27422F-A3C2-44B9-8B51-3C31784B97DC} = {EE925978-4586-404C-9A3F-B877B49C410A}
 		{998DF79B-462F-4790-9AA6-4DCC6E6060BF} = {EE925978-4586-404C-9A3F-B877B49C410A}
 		{6CD5C971-DFB3-468B-B10D-9B70EA40E880} = {0D427149-166D-4DA2-8200-AC90D09861F6}
+		{7D6E691F-A400-4BD1-87D8-D8D12EF4C82F} = {66233B99-53FC-4E6B-A0EA-EA69940CB811}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
