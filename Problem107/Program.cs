@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Kang.Algorithm.BaseLib;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -7,12 +9,6 @@ namespace Problem107
 {
     class Program
     {
-        class Node
-        {
-            public int Index { get; set; }
-            public List<Node> Children { get; set; }
-            public int Weight { get; set; }
-        }
         const string treeStr = @"-,16,12,21,-,-,-
 16,-,-,17,20,-,-
 12,-,-,28,-,31,-
@@ -23,52 +19,36 @@ namespace Problem107
         static int[][] matrix;
         static void Main(string[] args)
         {
-            string[] lines = treeStr.Replace("\r\n","|").Split('|');
-            matrix = new int[lines.Length][];
-            for (int i = 0; i < lines.Length; i++)
+            string[] lines = File.ReadAllLines("p107_network.txt");
+            //string[] lines = treeStr.Replace("\r\n","|").Split('|');
+            int N = lines[0].Split(',').Length;
+            DisjointSet vertices = new DisjointSet(N);
+            List<Tuple<int, int, int>> edges = new List<Tuple<int, int, int>>();
+            int initialWeight = 0;
+            for (int i = 0; i < N; i++)
             {
-                string[] items = lines[i].Split(',');
-                matrix[i] = new int[items.Length];
-                for (int j = 0; j < items.Length; j++)
+                string[] edge = lines[i].Split(',');
+                for (int j = 0; j < i; j++)
                 {
-                    if (items[j].Equals("-"))
-                    {
-                        matrix[i][j] = int.MaxValue;
+                    if (edge[j] == "-")
                         continue;
-                    }
-                    matrix[i][j] = int.Parse(items[j]);
+                    int weight = int.Parse(edge[j]);
+                    edges.Add(new Tuple<int, int, int>(weight, i, j));
+                    initialWeight += weight;
                 }
             }
-            Node rootNode = new Node()
+            edges.Sort();
+            int k = 0;
+            while (!vertices.IsSpanning())
             {
-                Children = new List<Node>(),
-                Index = 0,
-                Weight = 0
-            };
-            rootNode.Children = BuildChildren(rootNode, new List<int>() { 0 });
-        }
-        static List<Node> BuildChildren(Node currNode, List<int> existIndex)
-        {
-            int[] childrenRow = matrix[currNode.Index];
-            List<Node> result = new List<Node>();
-            for (int i = 0; i <  childrenRow.Length; i++)
-            {
-                int num = childrenRow[i];
-                if (num.Equals(int.MaxValue))
-                    continue;
-                if (existIndex.Contains(i))
-                    continue;
-                Node child = new Node()
+                if (vertices.Find(edges[k].Item2) != vertices.Find(edges[k].Item3))
                 {
-                    Index = i,
-                    Weight = num
-                };
-                existIndex.Add(i);
-                child.Children = BuildChildren(child, existIndex);
-                existIndex.Remove(i);
-                result.Add(child);
+                    vertices.Union(edges[k].Item2, edges[k].Item3);
+                    initialWeight -= edges[k].Item1;
+                }
+                k++;
             }
-            return result;
+            Console.WriteLine("Result is {0}", initialWeight);
         }
     }
 }
