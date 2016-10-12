@@ -7,6 +7,7 @@ namespace Kang.Algorithm.BaseLib
 {
     /// <summary>
     /// 并查集数据结构
+    /// 可以方便的实现克鲁斯卡尔算法
     /// </summary>
     public class DisjointSet
     {
