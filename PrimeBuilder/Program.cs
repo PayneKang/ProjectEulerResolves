@@ -13,8 +13,12 @@ namespace PrimeBuilder
         static void Main(string[] args)
         {
             long bi = 2;
-            int max = 1000000000;
-            bool[] mark = new bool[max + 1];
+            long max = 10000000000 / 8;
+            byte[] mark = new byte[max + 1];
+            byte[] mark2 = new byte[max + 1];
+            byte[] mark3 = new byte[max + 1];
+            byte[] mark4 = new byte[max + 1];
+            /*
             mark[0] = true;
             mark[1] = true;
             PrimeGenerator pg = new PrimeGenerator();
@@ -44,7 +48,7 @@ namespace PrimeBuilder
             byte[] buffer = Encoding.UTF8.GetBytes(sb.ToString());
             fs.Write(buffer, 0, buffer.Length);            
             fs.Close();
-
+            */
         }
     }
 }
