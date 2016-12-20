@@ -41,7 +41,8 @@ namespace Problem096
                 }
             }
         }
-        class Position {
+        class Position
+        {
             public int Row { get; set; }
             public int Col { get; set; }
         }
@@ -75,73 +76,91 @@ namespace Problem096
                     Console.WriteLine();
                 }
             }
-        }
-        static bool CheckPuzzle(SudokuPuzzle puzzle)
-        {
-            foreach(SudokuItem[] row in puzzle.Item){
-                foreach (SudokuItem item in row)
-                {
-                    if (item.Val == 0)
-                        return false;
-                }
-            }
-            return true;
-                
-        }
-        static SudokuPuzzle SolvePuzzle(SudokuPuzzle puzzle, int startRow, int startColumn)
-        {
-            // 开始解谜题
-            while (true)
+            public SudokuPuzzle CreateCopy()
             {
-
-                if (puzzle.IsSolved)
-                    break;
-                int j = startColumn;
-                for (int i = startRow; i < 9; i++)
+                SudokuPuzzle copy = new SudokuPuzzle();
+                copy.Item = new SudokuItem[this.Item.Length][];
+                for (int i = 0; i < this.Item.Length; i++)
                 {
-                    for (; j < 9; j++)
+                    copy.Item[i] = new SudokuItem[this.Item[i].Length];
+                    for (int j = 0; j < this.Item[i].Length; j++)
                     {
-                        if (puzzle.Item[i][j].IsConfirmed)
-                            continue;
-                        List<int> possibleVals = puzzle.Item[i][j].GetPossibleVals();
-                        for (int k = 0; k < possibleVals.Count; k++)
+                        copy.Item[i][j] = new SudokuItem()
                         {
-                            puzzle.Item[i][j].IsConfirmed = true;
-                            puzzle.Item[i][j].Val = possibleVals[k];
-                            puzzle.PrintPuzzle();
-                            if (!CheckPuzzle(puzzle))
-                            {
-                                puzzle.Item[i][j].IsConfirmed = false;
-                                puzzle.Item[i][j].Val = 0;
-                                puzzle.PrintPuzzle();
-                                if (k == possibleVals.Count - 1)
-                                    return puzzle;
+                            ColumnIndex = this.Item[i][j].ColumnIndex,
+                            IsConfirmed = this.Item[i][j].IsConfirmed,
+                            RowIndex = this.Item[i][j].RowIndex,
+                            Val = this.Item[i][j].Val
+                        };
+                    }
+                }
+                return copy;
+            }
+            static bool CheckPuzzle(SudokuPuzzle puzzle)
+            {
+                foreach (SudokuItem[] row in puzzle.Item)
+                {
+                    foreach (SudokuItem item in row)
+                    {
+                        if (item.Val == 0)
+                            return false;
+                    }
+                }
+                return true;
+
+            }
+            static SudokuPuzzle SolvePuzzle(SudokuPuzzle puzzle, int startRow, int startColumn)
+            {
+                // 开始解谜题
+                while (true)
+                {
+                    // 如果谜题解开，直接跳过
+                    if (puzzle.IsSolved)
+                        break;
+                    int j = startColumn;
+                    for (int i = startRow; i < 9; i++)
+                    {
+                        for (; j < 9; j++)
+                        {
+                            if (puzzle.Item[i][j].IsConfirmed)
                                 continue;
-                            }
-                            int nextRow = startRow;
-                            int nextColumn = startColumn + 1;
-                            if (nextColumn >= 9)
+                            List<int> possibleVals = puzzle.Item[i][j].GetPossibleVals();
+                            for (int k = 0; k < possibleVals.Count; k++)
                             {
-                                nextRow = nextRow + 1;
-                                nextColumn = 0;
-                            }
-                            if (nextRow < 9)
-                            {
-                                puzzle = SolvePuzzle(puzzle, nextRow, nextColumn);
+                                puzzle.Item[i][j].IsConfirmed = true;
+                                puzzle.Item[i][j].Val = possibleVals[k];
+                                puzzle.PrintPuzzle();
+                                if (!CheckPuzzle(puzzle))
+                                {
+                                    puzzle.Item[i][j].IsConfirmed = false;
+                                    puzzle.Item[i][j].Val = 0;
+                                    puzzle.PrintPuzzle();
+                                    if (k == possibleVals.Count - 1)
+                                        return puzzle;
+                                    continue;
+                                }
+                                int nextRow = startRow;
+                                int nextColumn = startColumn + 1;
+                                if (nextColumn >= 9)
+                                {
+                                    nextRow = nextRow + 1;
+                                    nextColumn = 0;
+                                }
+                                if (nextRow < 9)
+                                {
+                                    puzzle = SolvePuzzle(puzzle, nextRow, nextColumn);
+                                }
                             }
                         }
+                        j = 0;
                     }
-                    j = 0;
                 }
+                return puzzle;
             }
-            return puzzle;
-        }
-        static void Main(string[] args)
-        {
-            List<SudokuPuzzle> puzzles = LoadPuzzles();
-            for (int n = 0; n < puzzles.Count; n++)
+            static void Main(string[] args)
             {
-                SudokuPuzzle puzzle = puzzles[n];
+                List<SudokuPuzzle> puzzles = LoadPuzzles();
+                SudokuPuzzle puzzle = puzzles[1];
                 // 整理出所有的可能值
                 while (!puzzle.IsSolved)
                 {
@@ -149,75 +168,49 @@ namespace Problem096
                     {
                         for (int j = 0; j < 9; j++)
                         {
-                            if (!puzzles[n].Item[i][j].IsConfirmed)
+                            if (!puzzle.Item[i][j].IsConfirmed)
                                 continue;
                             puzzle = ClearPossiblesForACell(i, j, puzzle);
                         }
                     }
                 }
-            }
-        }
-        static SudokuPuzzle ClearPossiblesForACell(int i, int j, SudokuPuzzle puzzle)
-        {
-            // 读取一个值，如果此值为0，则继续下一个
-            int currVal = puzzle.Item[i][j].Val;
-            if (currVal == 0)
-                return puzzle;
-            // 清除根据此值可以排除的值
-            // 清除同行的值
-            int row = i;
-            int col = 0;
-            for (col = 0; col < 9; col++)
-            {
-                if (col == j)
-                    continue;
-
-                SudokuItem tempItem = puzzle.Item[row][col];
-                if (tempItem.Val == currVal)
-                    throw new Exception("同一行有相同值");
-
-
-                if (tempItem.IsConfirmed)
-                    continue;
-
-                tempItem.RemoviePossibleVal(currVal);
-
-            }
-
-            // 清除同列的值
-            col = j;
-            for (row = 0; row < 9; row++)
-            {
-                if (row == i)
-                    continue;
-
-                SudokuItem tempItem = puzzle.Item[row][col];
-                if (tempItem.Val == currVal)
-                    throw new Exception("同一列有相同值");
-
-
-                if (tempItem.IsConfirmed)
-                    continue;
-
-                tempItem.RemoviePossibleVal(currVal);
-
-            }
-            // 清除同块的值
-            col = j / 3;
-            row = i / 3;
-            int rowTml = (row + 1) * 3;
-            int colTml = (col + 1) * 3;
-            for (int tr = row * 3; tr < rowTml; tr++)
-            {
-                for (int tc = col * 3; tc < colTml; tc++)
+                /*
+                for (int n = 0; n < puzzles.Count; n++)
                 {
-                    if (tr == i && tc == j)
+                    SudokuPuzzle puzzle = puzzles[n];
+                    // 整理出所有的可能值
+                    while (!puzzle.IsSolved)
+                    {
+                        for (int i = 0; i < 9; i++)
+                        {
+                            for (int j = 0; j < 9; j++)
+                            {
+                                if (!puzzle.Item[i][j].IsConfirmed)
+                                    continue;
+                                puzzle = ClearPossiblesForACell(i, j, puzzle);
+                            }
+                        }
+                    }
+                }*/
+            }
+            static SudokuPuzzle ClearPossiblesForACell(int i, int j, SudokuPuzzle puzzle)
+            {
+                // 读取一个值，如果此值为0，则继续下一个
+                int currVal = puzzle.Item[i][j].Val;
+                if (currVal == 0)
+                    return puzzle;
+                // 清除根据此值可以排除的值
+                // 清除同行的值
+                int row = i;
+                int col = 0;
+                for (col = 0; col < 9; col++)
+                {
+                    if (col == j)
                         continue;
 
-                    SudokuItem tempItem = puzzle.Item[tr][tc];
-
+                    SudokuItem tempItem = puzzle.Item[row][col];
                     if (tempItem.Val == currVal)
-                        throw new Exception("同一框有相同值");
+                        throw new Exception("同一行有相同值");
 
 
                     if (tempItem.IsConfirmed)
@@ -226,47 +219,91 @@ namespace Problem096
                     tempItem.RemoviePossibleVal(currVal);
 
                 }
-            }
-            return puzzle;
-        }
-       
-        
-        static List<SudokuPuzzle> LoadPuzzles()
-        {
-            List<SudokuPuzzle> puzzles = new List<SudokuPuzzle>();
-            string str = FileReader.ReadFile("p096_sudoku.txt");
-            string[] strArray = str.Split('\n');
-            for (int i = 0; i < strArray.Length; i += 10)
-            {
-                if (!strArray[i].Contains("Grid"))
+
+                // 清除同列的值
+                col = j;
+                for (row = 0; row < 9; row++)
                 {
-                    continue;
+                    if (row == i)
+                        continue;
+
+                    SudokuItem tempItem = puzzle.Item[row][col];
+                    if (tempItem.Val == currVal)
+                        throw new Exception("同一列有相同值");
+
+
+                    if (tempItem.IsConfirmed)
+                        continue;
+
+                    tempItem.RemoviePossibleVal(currVal);
+
                 }
-                SudokuPuzzle puzzle = new SudokuPuzzle();
-                puzzle.Item = new SudokuItem[9][];
-                for (int j = 0; j < 9; j++)
+                // 清除同块的值
+                col = j / 3;
+                row = i / 3;
+                int rowTml = (row + 1) * 3;
+                int colTml = (col + 1) * 3;
+                for (int tr = row * 3; tr < rowTml; tr++)
                 {
-                    puzzle.Item[j] = new SudokuItem[9];
-                    int lineIndex = j + i + 1;
-                    for (int k = 0; k < 9; k++)
+                    for (int tc = col * 3; tc < colTml; tc++)
                     {
-                        puzzle.Item[j][k] = new SudokuItem();
-                        puzzle.Item[j][k].ColumnIndex = k;
-                        puzzle.Item[j][k].RowIndex = j;
-                        int val = int.Parse(strArray[lineIndex].Substring(k, 1));
-                        puzzle.Item[j][k].IsConfirmed = (val != 0);
-                        puzzle.Item[j][k].Val = val;
-                        if (puzzle.Item[j][k].IsConfirmed)
+                        if (tr == i && tc == j)
                             continue;
-                        for (int n = 1; n < 10; n++)
-                        {
-                            puzzle.Item[j][k].AddPossibleVal(n);
-                        }
+
+                        SudokuItem tempItem = puzzle.Item[tr][tc];
+
+                        if (tempItem.Val == currVal)
+                            throw new Exception("同一框有相同值");
+
+
+                        if (tempItem.IsConfirmed)
+                            continue;
+
+                        tempItem.RemoviePossibleVal(currVal);
+
                     }
                 }
-                puzzles.Add(puzzle);
+                return puzzle;
             }
-            return puzzles;
+
+
+            static List<SudokuPuzzle> LoadPuzzles()
+            {
+                List<SudokuPuzzle> puzzles = new List<SudokuPuzzle>();
+                string str = FileReader.ReadFile("p096_sudoku.txt");
+                string[] strArray = str.Split('\n');
+                for (int i = 0; i < strArray.Length; i += 10)
+                {
+                    if (!strArray[i].Contains("Grid"))
+                    {
+                        continue;
+                    }
+                    SudokuPuzzle puzzle = new SudokuPuzzle();
+                    puzzle.Item = new SudokuItem[9][];
+                    for (int j = 0; j < 9; j++)
+                    {
+                        puzzle.Item[j] = new SudokuItem[9];
+                        int lineIndex = j + i + 1;
+                        for (int k = 0; k < 9; k++)
+                        {
+                            puzzle.Item[j][k] = new SudokuItem();
+                            puzzle.Item[j][k].ColumnIndex = k;
+                            puzzle.Item[j][k].RowIndex = j;
+                            int val = int.Parse(strArray[lineIndex].Substring(k, 1));
+                            puzzle.Item[j][k].IsConfirmed = (val != 0);
+                            puzzle.Item[j][k].Val = val;
+                            if (puzzle.Item[j][k].IsConfirmed)
+                                continue;
+                            for (int n = 1; n < 10; n++)
+                            {
+                                puzzle.Item[j][k].AddPossibleVal(n);
+                            }
+                        }
+                    }
+                    puzzles.Add(puzzle);
+                }
+                return puzzles;
+            }
         }
     }
 }

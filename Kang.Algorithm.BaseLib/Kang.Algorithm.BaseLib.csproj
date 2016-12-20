@@ -51,6 +51,7 @@
     <Compile Include="FactorsGenerator.cs" />
     <Compile Include="FibonacciGenerator.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="Formulas\Phi.cs" />
     <Compile Include="MatrixPathBuilder.cs" />
     <Compile Include="Models\AbundantCheckNumber.cs" />
     <Compile Include="Models\BigIntegerFranction.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="NumberUtils.cs" />
     <Compile Include="PalindromicChecker.cs" />
     <Compile Include="PermutationProvider.cs" />
+    <Compile Include="PrimeChecker\MeisselLehmerPrimeCounter.cs" />
     <Compile Include="PrimeChecker\MillerRabinCheck.cs" />
     <Compile Include="PrimeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
