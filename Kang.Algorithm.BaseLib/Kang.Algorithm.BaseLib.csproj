@@ -51,7 +51,6 @@
     <Compile Include="FactorsGenerator.cs" />
     <Compile Include="FibonacciGenerator.cs" />
     <Compile Include="FileReader.cs" />
-    <Compile Include="Formulas\Phi.cs" />
     <Compile Include="MatrixPathBuilder.cs" />
     <Compile Include="Models\AbundantCheckNumber.cs" />
     <Compile Include="Models\BigIntegerFranction.cs" />
@@ -67,6 +66,7 @@
     <Compile Include="PermutationProvider.cs" />
     <Compile Include="PrimeChecker\MeisselLehmerPrimeCounter.cs" />
     <Compile Include="PrimeChecker\MillerRabinCheck.cs" />
+    <Compile Include="PrimeChecker\TestChecker.cs" />
     <Compile Include="PrimeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RotationProvider.cs" />
@@ -78,6 +78,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="primes_100000000.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Formulas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

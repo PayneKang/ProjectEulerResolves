@@ -10,121 +10,85 @@ namespace Kang.Algorithm.BaseLib.PrimeChecker
     /// </summary>
     public class MeisselLehmerPrimeCounter
     {
-        throw new ApplicationException("计算3和125000数字时候报错，需要调查后续错误原因");
-        static long q = 1, p = 1;
-        static long[] v;
-        static long[] primes;
-        public static long PrimeCount(long num)
+        private const long MAX = 400010;
+        private const long MAXN = 100;
+        private const long MAXM = 10010;
+        private const long MAXP = 40000;
+        private int[] counter;
+        private long[][] dp;
+        private int len = 0;
+        private int[] primes;
+        private double oneOfThree = 1.0/3;
+        public MeisselLehmerPrimeCounter()
         {
-            q = 1;
-            p = 1;
-            double markLen;
-            long count = 0;
-            long sum = 0, s = 0;
-            long i,j,m = 7;
-            markLen = num < 10000 ? 10002 : (long)(Math.Exp(2.0d / 3d * Math.Log(num)) + 1);
-            bool[] marks = new bool[(long)markLen];
-
-
-            // 筛选 n ^ (2/3) 或 n 以内的素数
-            for (i = 2; i < (long)Math.Sqrt(markLen); i++)
-            {
-                if (marks[i])
-                    continue;
-                for (j = i + i; j < markLen; j += i)
-                {
-                    marks[j] = true;
-                }
-            }
-            marks[0] = marks[1] = true;
-
-            // 统计素数个数并保存素数
-            List<long> primeList = new List<long>();
-            for (i = 0; i < markLen; i++)
-            {
-                if (marks[i])
-                    continue;
-                count++;
-                primeList.Add(i);
-            }
-            primes = primeList.ToArray();
-            if (num < 10000)
-                return Pi(num, primes, count);
-
-            //n^(1/3)内的素数数目  
-            long len = Pi((long)Math.Exp(1.0d / 3d * Math.Log(num)), primes, count);
-            //n^(1/2)内的素数数目  
-            long len2 = Pi((long)Math.Sqrt(num), primes, count);
-            //n^（2/3)内的素数数目  
-            long len3 = Pi((long)markLen - 1, primes, count);  
-
-            // 乘积个数
-            j = (long)markLen - 2;
-            for (i = (long)Math.Exp(1.0d / 3d * Math.Log(num)); i < (long)Math.Sqrt(num); i++)
-            {
-                if (marks[i])
-                    continue;
-                while (i * j > num)
-                {
-                    if (!marks[j])
-                        s++;
-                    j--;
-                }
-                sum += s;
-            }
-            sum = (len2 - len) * len3 - sum;
-            sum += (len * (len - 1) - len2 * (len2 - 1)) / 2;
-
-            // 欧拉函数
-            if (m > len)
-                m = len;
-            for (i = 0; i < m; i++)
-            {
-                q *= primes[i];
-                p *= primes[i] - 1;
-            }
-            v = new long[q];
-            for (i = 0; i < q; i++)
-            {
-                v[i] = i;
-            }
-            for (i = 0; i < m; i++)
-            {
-                for (j = q - 1; j >= 0; j--)
-                {
-                    v[j] -= v[j / primes[i]];
-                }
-            }
-
-            sum = Phi(num, len, m) - sum + len - 1;
-            return sum;
-
+            Init();
         }
 
-        static long Pi(long n, long[] primeArr, long len)
+        private void InitPrimes()
         {
-            long i = 0;
-            bool mark = false;
-            for (i = len - 1; i >= 0; i--)
+            bool[] marks = new PrimeGenerator().CheckPrimeNumber(10000000);
+            counter = new int[marks.Length];
+            List<int> tmpPrimes = new List<int>();
+            for (int i = 1; i < marks.Length; i++)
             {
-                if (primes[i] < n)
+                counter[i] = counter[i - 1];
+                if (marks[i])
                 {
-                    mark = true;
-                    break;
+                    tmpPrimes.Add(i);
+                    counter[i] ++;
                 }
             }
-            if (mark)
-                return i + 1;
-            return 0;
+            primes = tmpPrimes.ToArray();
+        }
+        private void InitDP()
+        {
+            dp = new long[MAXN][];
+            for (int n = 0; n < MAXN; n++)
+            {
+                dp[n] = new long[MAXM];
+                for (int m = 0; m < MAXM; m++)
+                {
+                    if (n == 0)
+                    {
+                        dp[n][m] = m;
+                        continue;
+                    }
+                    dp[n][m] = dp[n - 1][m] - dp[n - 1][m / primes[n - 1]];
+                }
+            }
+        }
+        private void Init()
+        {
+            InitPrimes();
+            InitDP();
         }
 
-        private static long Phi(long x, long a, long m)
+        private long Phi(long num, int n)
         {
-            if (a == m)
-                return (x / q) * p + v[x % q];
-            if (x < primes[a - 1])
+            if (n == 0)
+                return num;
+            if (primes[n - 1] >= num)
                 return 1;
-            return Phi(x, a - 1, m) - Phi((long)((double)x / (double)primes[a - 1]), a - 1, m);
+            if (num < MAXM && n < MAXN)
+                return dp[n][num];
+            return Phi(num, n - 1) - Phi(num/primes[n - 1], n - 1);
+        }
+
+        public long Lehmer(long num)
+        {
+            if (num < MAX) return counter[num];
+
+            long w, res = 0;
+            int i, a, s, c, x, y;
+            s = (int)Math.Sqrt(0.9 + num);
+            y = c = (int)Math.Pow(0.9 + num, oneOfThree);
+            a = counter[y];
+            res = Phi(num, a) + a - 1;
+            for (i = a; primes[i] <= s; i++)
+            {
+                res = res - Lehmer(num/primes[i]) + Lehmer(primes[i]) - 1;
+            }
+            return res;
         }
     }
 }
