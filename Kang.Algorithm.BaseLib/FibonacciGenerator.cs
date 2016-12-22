@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
 
@@ -23,12 +24,12 @@ namespace Kang.Algorithm.BaseLib
             firstNum = secondNum - firstNum;
             return secondNum;
         }
-        private LargeNumberModel firstLNum = new LargeNumberModel("1");
-        private LargeNumberModel secondLNum = new LargeNumberModel("2");
+        private BigInteger firstLNum = 1;
+        private BigInteger secondLNum = 2;
 
-        public LargeNumberModel NextLargeNumber()
+        public BigInteger NextLargeNumber()
         {
-            LargeNumberModel temp = secondLNum;
+            BigInteger temp = secondLNum;
             secondLNum = firstLNum + secondLNum;
             firstLNum = temp;
             return secondLNum;
