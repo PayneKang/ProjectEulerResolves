@@ -16,6 +16,7 @@ namespace Kang.Algorithm.BaseLib
         public FibonacciGenerator(){}
         private int firstNum = 1;
         private int secondNum = 2;
+        private double sqrt5 = Math.Sqrt(5);
         public int Next()
         {
             secondNum = firstNum + secondNum;
@@ -31,6 +32,16 @@ namespace Kang.Algorithm.BaseLib
             secondLNum = firstLNum + secondLNum;
             firstLNum = temp;
             return secondLNum;
+        }
+
+        /// <summary>
+        /// 直接返回第n个Fibonnaci数字，index从1开始
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public long GenerateFibonacci(long index)
+        {
+            return (long)((Math.Pow((1 + sqrt5) / 2, index) - Math.Pow((1 - sqrt5) / 2, index)) / sqrt5);
         }
     }
 }
