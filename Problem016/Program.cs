@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem016
 {
@@ -10,7 +11,7 @@ namespace Problem016
     {
         static void Main(string[] args)
         {
-            LargeNumberModel num = new LargeNumberModel("2"); // 11930336
+            BigInteger num = 2; // 11930336
             for (int i = 1; i < 1000; i++ )
                 num = num * 2;
             Console.WriteLine(num);

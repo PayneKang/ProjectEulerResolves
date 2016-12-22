@@ -57,7 +57,6 @@
     <Compile Include="Models\Direction.cs" />
     <Compile Include="Models\Fraction.cs" />
     <Compile Include="Models\LargeNumberFractionModel.cs" />
-    <Compile Include="Models\LargeNumberModel.cs" />
     <Compile Include="Models\PathNode.cs" />
     <Compile Include="Models\RomaNumber.cs" />
     <Compile Include="MultiplesChecker.cs" />
