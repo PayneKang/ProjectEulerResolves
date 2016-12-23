@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem055
 {
@@ -13,35 +14,41 @@ namespace Problem055
             int lychrelCount = 0;
             for (int i = 1; i < 10000; i++)
             {
-                if (!CanGetPalindromicIn50Cycles(new LargeNumberModel(i.ToString())))
+                if (!CanGetPalindromicIn50Cycles(i))
                     lychrelCount++;
             }
             Console.WriteLine(string.Format("Result is {0}", lychrelCount));
         }
-        static bool CanGetPalindromicIn50Cycles(LargeNumberModel number)
+        static bool CanGetPalindromicIn50Cycles(BigInteger number)
         {
-            LargeNumberModel temp = new LargeNumberModel(number.ToString());
+            BigInteger temp = BigInteger.Parse(number.ToString());
             for (int i = 0; i < 50; i++)
             {
-                LargeNumberModel reverse = ReverseNumber(temp);
-                LargeNumberModel sum = temp + reverse;
+                BigInteger reverse = ReverseNumber(temp);
+                BigInteger sum = temp + reverse;
                 if (CheckPalindromic(sum))
                     return true;
                 temp = sum;
             }
             return false;
         }
-        static bool CheckPalindromic(LargeNumberModel number)
+        static bool CheckPalindromic(BigInteger number)
         {
             string reverse = ReverseNumber(number).ToString();
             if (string.Equals(number.ToString(),reverse))
                 return true;
             return false;
         }
-        static LargeNumberModel ReverseNumber( LargeNumberModel number)
+        static BigInteger ReverseNumber(BigInteger number)
         {
-            LargeNumberModel result = new LargeNumberModel();
-            result.Digits = number.Digits.Reverse().ToArray();
+            BigInteger temp = number;
+            BigInteger result = 0;
+            while (temp > 0)
+            {
+                result *= 10;
+                result += temp % 10;
+                temp = temp / 10;
+            }
             return result;
         }
     }

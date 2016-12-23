@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem048
 {
     class Program
     {
-        static LargeNumberModel SeriesSum(int max)
+        static BigInteger SeriesSum(int max)
         {
-            LargeNumberModel result = new LargeNumberModel("0");
+            BigInteger result = 0;
             for (int i = 1; i <= max; i++)
             {
-                LargeNumberModel num = new LargeNumberModel(i.ToString());
+                BigInteger num = i;
                 for (int j = 0; j < i - 1; j++)
                 {
                     num = num * i;
@@ -24,8 +25,8 @@ namespace Problem048
         }
         static void Main(string[] args)
         {
-            LargeNumberModel num = SeriesSum(1000);
-            Console.WriteLine(num.ToString().Substring(num.NumberLength - 10, 10));
+            string num = SeriesSum(1000).ToString();
+            Console.WriteLine(num.Substring(num.Length - 10, 10));
         }
     }
 }

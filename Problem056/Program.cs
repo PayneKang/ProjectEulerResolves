@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
+using Kang.Algorithm.BaseLib;
 
 namespace Problem056
 {
@@ -10,14 +12,14 @@ namespace Problem056
     {
         static void Main(string[] args)
         {
-            int result = 0;
+            long result = 0;
             for (int a = 1; a < 100; a++)
             {
                 for (int b = 1; b < 100; b++)
                 {
-                    LargeNumberModel la = new LargeNumberModel(a.ToString());
-                    LargeNumberModel powresult = Pow(la, b);
-                    int digitalSum = powresult.Digits.Sum();
+                    BigInteger la = a;
+                    BigInteger powresult = Pow(la, b);
+                    long digitalSum = NumberUtils.SumDigits(powresult);
                     if (digitalSum > result)
                         result = digitalSum;
                     Console.WriteLine("{0} ^ {1} = {2} ; digital sum = {3}", a, b, powresult.ToString(), digitalSum);
@@ -26,15 +28,15 @@ namespace Problem056
             }
             Console.WriteLine("Result is {0}", result);
         }
-        static LargeNumberModel Pow(LargeNumberModel num, int pow)
+        static BigInteger Pow(BigInteger num, int pow)
         {
             if (pow < 0)
                 throw new ApplicationException("Pow can not be smaller than 0");
             if (pow == 0)
-                return new LargeNumberModel("1");
+                return 1;
             if (pow == 1)
                 return num;
-            LargeNumberModel result = new LargeNumberModel(num.ToString());
+            BigInteger result = num;
             int basenum = int.Parse(num.ToString());
             for (int i = 1; i < pow; i++)
             {

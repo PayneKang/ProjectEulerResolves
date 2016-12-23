@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace Kang.Algorithm.BaseLib
@@ -75,6 +76,17 @@ namespace Kang.Algorithm.BaseLib
                 result *= c;
             }
             return result;
+        }
+
+        public static long SumDigits(BigInteger num)
+        {
+            long sum = 0;
+            while (num > 0)
+            {
+                sum += (long)(num % 10);
+                num = num / 10;
+            }
+            return sum;
         }
     }
 }
