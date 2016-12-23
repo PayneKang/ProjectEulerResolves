@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem063
 {
@@ -13,11 +14,11 @@ namespace Problem063
             int count = 0;
             for (int i = 1; i <= 9; i++)
             {
-                LargeNumberModel num = new LargeNumberModel(i.ToString());
+                BigInteger num = i;
                 int pow = 1;
                 while (true)
                 {
-                    if (num.NumberLength != pow)
+                    if (num.ToString().Length != pow)
                         break;
                     num = num * i;
                     count++;

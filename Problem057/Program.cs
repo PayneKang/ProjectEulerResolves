@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem057
 {
@@ -15,28 +16,28 @@ namespace Problem057
             for (int i = 1; i <= 1000; i++)
             {
                 MAXLEN = i;
-                LargeNumberModel[] frac = BuildFractionResult(1, 2, 0);
-                if (frac[0].NumberLength > frac[1].NumberLength)
+                BigInteger[] frac = BuildFractionResult(1, 2, 0);
+                if (frac[0].ToString().Length > frac[1].ToString().Length)
                 {
                     result++;
                 }
             }
             Console.WriteLine(string.Format("Result is {0}", result));
         }
-        static LargeNumberModel[] BuildFractionResult(int baseNum, int seed, int len)
+        static BigInteger[] BuildFractionResult(int baseNum, int seed, int len)
         {
             if (len == MAXLEN)
             {
                 if (len == 0)
-                    return new LargeNumberModel[] { new LargeNumberModel(baseNum.ToString()), new LargeNumberModel("1") };
-                return new LargeNumberModel[] { new LargeNumberModel(seed.ToString()), new LargeNumberModel("1") };
+                    return new BigInteger[] { baseNum, 1 };
+                return new BigInteger[] { seed, 1 };
             }
             int nextBase = seed;
             len++;
-            LargeNumberModel[] chdFrac = BuildFractionResult(nextBase, seed, len);
-            LargeNumberModel dividend = chdFrac[0];
-            LargeNumberModel divisor = dividend * baseNum + chdFrac[1];
-            return new LargeNumberModel[] { divisor, dividend };
+            BigInteger[] chdFrac = BuildFractionResult(nextBase, seed, len);
+            BigInteger dividend = chdFrac[0];
+            BigInteger divisor = dividend * baseNum + chdFrac[1];
+            return new BigInteger[] { divisor, dividend };
         }
     }
 }

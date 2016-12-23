@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kang.Algorithm.BaseLib.Models;
+using System.Numerics;
 
 namespace Problem062
 {
@@ -12,33 +13,30 @@ namespace Problem062
         static void Main(string[] args)
         {
             int i = 1;
-            Dictionary<string, List<LargeNumberModel>> nums = new Dictionary<string, List<LargeNumberModel>>();
+            Dictionary<string, List<BigInteger>> nums = new Dictionary<string, List<BigInteger>>();
             while (true)
             {
-                LargeNumberModel num = Cube(i);
+                BigInteger num = Cube(i);
                 string sign = SignNum(num);
                 if (!nums.ContainsKey(sign))
                 {
-                    List<LargeNumberModel> numItem = new List<LargeNumberModel>();
+                    List<BigInteger> numItem = new List<BigInteger>();
                     nums.Add(sign, numItem);
                 }
                 nums[sign].Add(num);
                 i++;
                 if (nums[sign].Count == COUNT)
                 {
-                    Console.WriteLine(string.Format("result is {0}", nums[sign].First().ToString()));
+                    Console.WriteLine(string.Format("result is {0}", nums[sign].First().ToString()));                    
                     return;
                 }
             }
         }
-        static LargeNumberModel Cube(int num)
+        static BigInteger Cube(int num)
         {
-            LargeNumberModel result = new LargeNumberModel(num.ToString());
-            result = result * num;
-            result = result * num;
-            return result;
+            return (BigInteger)num * num * num;
         }
-        static string SignNum(LargeNumberModel num)
+        static string SignNum(BigInteger num)
         {
             string numStr = num.ToString();
             return new string(numStr.OrderBy(x => x).ToArray());
