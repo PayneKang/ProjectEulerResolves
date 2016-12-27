@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Kang.Algorithm.BaseLib.Formulas;
+using System.Numerics;
 
 namespace Kang.Algorithm.BaseLib.Test
 {
@@ -11,17 +13,9 @@ namespace Kang.Algorithm.BaseLib.Test
     {
         static void Main(string[] args)
         {
-            MeisselLehmerPrimeCounter pc = new MeisselLehmerPrimeCounter();
-
-            for(int i = 9; i <= 15; i++){
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                long num = (long)Math.Pow(10, i);
-                long rlt = pc.Lehmer(num);
-                sw.Stop();
-                Console.WriteLine("Prime count below 1e{0} \tis {1} \t; timeused:{2}ms",i,rlt,sw.ElapsedMilliseconds);
-            }
-            Console.Read();
+            PellFormula pell = new PellFormula(92);
+            BigInteger[] rlt = pell.CalculateMinIntegerSolution();
+            BigInteger[] rlt2 = pell.FindNextSolution();
         }
     }
 }
