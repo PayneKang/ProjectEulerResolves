@@ -13,9 +13,8 @@ namespace Kang.Algorithm.BaseLib.Test
     {
         static void Main(string[] args)
         {
-            PellFormula pell = new PellFormula(92);
-            BigInteger[] rlt = pell.CalculateMinIntegerSolution();
-            BigInteger[] rlt2 = pell.FindNextSolution();
+            QuadFormula qf = new QuadFormula(0, 0, 0, 10, 84, 16);
+            qf.CalculateSolution();
         }
     }
 }

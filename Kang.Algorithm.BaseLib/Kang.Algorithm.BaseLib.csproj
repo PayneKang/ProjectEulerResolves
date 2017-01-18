@@ -52,6 +52,7 @@
     <Compile Include="FibonacciGenerator.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="Formulas\PellFormula.cs" />
+    <Compile Include="Formulas\QuadFormula.cs" />
     <Compile Include="MatrixPathBuilder.cs" />
     <Compile Include="Models\AbundantCheckNumber.cs" />
     <Compile Include="Models\BigIntegerFranction.cs" />

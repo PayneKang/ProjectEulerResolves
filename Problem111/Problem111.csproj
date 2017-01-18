@@ -45,11 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="primes_100000000.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Kang.Algorithm.BaseLib\Kang.Algorithm.BaseLib.csproj">
       <Project>{00d99943-038e-4583-ad9e-760936006716}</Project>
       <Name>Kang.Algorithm.BaseLib</Name>
